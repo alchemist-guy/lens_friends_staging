@@ -82,8 +82,8 @@ gem 'stripe'
 gem 'ransack'
 gem 'pagy'
 gem "noticed"
-gem "capistrano"
-gem "capistrano-rails"
+gem "capistrano", require: false
+gem "capistrano-rails", require: false
 gem "capistrano-bundler"
 gem "capistrano-rbenv"
 gem "capistrano3-puma"
