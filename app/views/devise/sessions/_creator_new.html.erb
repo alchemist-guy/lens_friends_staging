@@ -1,0 +1,75 @@
+<div class="flex min-h-screen flex-col pt-28 md:flex-row md:pt-0">
+  <div class="flex w-full flex-col items-center justify-center md:w-7/12 md:p-8 md:pt-20">
+    <div class="form-wrapper flex w-full flex-col justify-center p-6 md:w-10/12 lg:w-8/12">
+
+      <%= image_tag('logo.png', class: 'h-24 w-24 md:h-24 mb-6 mx-auto') %>
+
+      <h2 class="text-xl md:text-2xl pb-10 text-center font-bold text-uppercase" style="font-family: 'Nanum Myeongjo', sans-serif; font-weight: 700;">
+        SIGN IN TO YOUR<br class=""> LENSFRIENDS ACCOUNT
+      </h2>
+
+      
+      <%- if devise_mapping.omniauthable? %>
+        <%= form_for(:user, url: user_google_oauth2_omniauth_authorize_path, method: :post, html: { data: { turbo: "false"} }) do |f| %>
+          <div class="hover:shadow-none bg-gray-50 shadow-md rounded-full mb-6">
+            <button class="inline-flex w-full justify-center gap-2 items-center h-10" type="submit">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 1024 1024"><path fill="#4F4F4F" d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448s448-200.6 448-448S759.4 64 512 64m167 633.6C638.4 735 583 757 516.9 757c-95.7 0-178.5-54.9-218.8-134.9C281.5 589 272 551.6 272 512s9.5-77 26.1-110.1c40.3-80.1 123.1-135 218.8-135c66 0 121.4 24.3 163.9 63.8L610.6 401c-25.4-24.3-57.7-36.6-93.6-36.6c-63.8 0-117.8 43.1-137.1 101c-4.9 14.7-7.7 30.4-7.7 46.6s2.8 31.9 7.7 46.6c19.3 57.9 73.3 101 137 101c33 0 61-8.7 82.9-23.4c26-17.4 43.2-43.3 48.9-74H516.9v-94.8h230.7c2.9 16.1 4.4 32.8 4.4 50.1c0 74.7-26.7 137.4-73 180.1"/></svg>
+              <span class="text-xs uppercase tracking-widest">Log In with Google</span>
+            </button>
+          </div>
+        <% end %>
+      <% end %>
+      
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <% if alert.present? %>
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-2 rounded relative" role="alert">
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <div>
+          <div class="relative my-2 mb-3 float-label-input">
+            <%= f.email_field :email, 
+                  placeholder: '', 
+                  autofocus: true, 
+                  class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400', 
+                  required: true %>
+            <label for="email" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Email </label>
+          </div>
+          <div class="relative my-2 float-label-input">
+            <%= f.password_field :password,
+                     placeholder: '',
+                     class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400',
+                     required: true %>
+            <label for="pass" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Password </label>
+          </div>
+        </div>
+
+        <div class="relative my-2 mb-3 float-label-input">
+          <%= submit_tag "Continue", class: "block w-full focus:outline-none focus:shadow-outline border border-gray-300 py-3 px-3 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#d6dacc] hover:bg-[#9c9e83] hover:text-white" %>
+        </div>
+      <% end %>
+
+      <h6 class="relative z-10 mt-6">
+        <span>Can't remember your password?</span>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Use magic link", new_password_path(resource_name), class:"easy-transition border-b border-current pb-1 hover:text-[#9c9e83]" %>
+        <% end %>
+      </h6>
+
+      <h6 class="relative z-10 mt-3">
+        <span>Don't have account?</span>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to "Sign Up", new_user_registration_path( role: "creator"), class:"easy-transition border-b border-current pb-1 hover:text-[#9c9e83]" %>
+        <% end %>
+      </h6>
+
+    </div>
+  </div>
+
+  <div class="relative h-[40vh] w-full shrink-0 md:mt-0 md:h-screen md:w-[44vw] flex items-center justify-center">
+    <%= image_tag('login-screen.jpg', class: 'h-full w-full object-cover object-center') %>
+    <div class="absolute top-0 left-0 z-10 h-full w-full" style="background-color: rgba(0,0,0,0.2)"></div>
+  </div>
+
+</div>

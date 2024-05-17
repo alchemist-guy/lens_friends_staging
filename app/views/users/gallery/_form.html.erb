@@ -1,0 +1,61 @@
+<%= form_with(model: model, url: url, method: method, data: { controller: 'gallery'}) do |form| %>
+  <div class="md:flex gap-2">
+    <%= form.hidden_field :gallery_type, value: params[:gallery_type] %>
+  
+    <div class="flex items-center justify-center w-full my-6">
+      <div for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-100 hover:bg-gray-200"  data-action="click->gallery#openImage">
+          <div class="flex flex-col items-center justify-center text-center pt-5 pb-6">
+              <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+              </svg>
+              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Upload Images </span> <span class="hidden md:inline-block">from your computer </span> </p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or JPEG (MAX. 10MB/image)</p>
+          </div>
+          <input id="dropzone-file" type="file" class="hidden" />
+          <%= form.file_field :images, multiple: true, accept: 'image/*', data: { gallery_target: 'image', action: "change->gallery#previewImages" }, class: "hidden" %>
+          
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center w-full my-6">
+      <div for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-100 hover:bg-gray-200" data-action="click->gallery#openVideo">
+          <div class="flex flex-col items-center justify-center text-center pt-5 pb-6">
+              <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+              </svg>
+              <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Upload Videos </span> <span class="hidden md:inline-block">from your computer </span> </p>
+              <p class="text-xs text-gray-500 dark:text-gray-400">MOV, MP4, MKV or MPEG (MAX. 100Mb/Video)</p>
+          </div>
+          <input id="dropzone-file" type="file" class="hidden" />
+          <%= form.file_field :videos, multiple: true, accept: 'video/*', data: { gallery_target: 'video', action: "change->gallery#previewVideos" }, class: "hidden" %>
+
+      </div>
+    </div>
+  </div>
+
+  <span id="gallery-errors">
+    <%= render partial: "shared/errors", locals:{ error_messages: @error_messages }%>
+  </span>
+  
+  <div class=" my-6">
+    <div class="flex gap-2 overflow-x-auto" data-gallery-target="showImages">
+      <div class="mx-auto">
+        <img class="mx-auto w-32" src="https://user-images.githubusercontent.com/507615/54591670-ac0a0180-4a65-11e9-846c-e55ffce0fe7b.png" alt="no data" />
+        <span class="text-small text-gray-500">No images selected</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-6 mt-10">
+    <div class="flex gap-2 overflow-x-auto" data-gallery-target="showVideos">
+      <div class="mx-auto">
+        <img class="mx-auto w-32" src="https://user-images.githubusercontent.com/507615/54591670-ac0a0180-4a65-11e9-846c-e55ffce0fe7b.png" alt="no data" />
+        <span class="text-small text-gray-500">No videos selected</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10 md:w-6/12">
+    <input type="submit" value="Upload" class="block w-full md:w-1/2 focus:outline-none focus:shadow-outline border border-gray-300 py-3 px-6 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#d6dacc] hover:bg-[#9c9e83] hover:text-white">
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<%= turbo_frame_tag :attachment_gallery do %>
+  <div data-controller="swiper" data-action="lightbox:open@document->swiper#navigate">
+    <div class="swiper" data-swiper-target="container">
+      <div class="swiper-wrapper">
+        <% if @gallery.present? %>
+          <% @gallery.images.each do |image| %>
+            <div class="swiper-slide flex justify-center" data-key="<%= image.key %>">
+                <%= image_tag image, class: "object-contain rounded-xl h-96 mx-auto" %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="swiper-slide flex justify-center" >
+              <%= image_tag @image_blob, class: "object-contain rounded-xl h-96 mx-auto" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="swiper-button-prev" data-swiper-target="prev">
+      </div>
+      <div class="swiper-button-next" data-swiper-target="next">
+      </div>
+    </div>
+   </div>
+<% end %>

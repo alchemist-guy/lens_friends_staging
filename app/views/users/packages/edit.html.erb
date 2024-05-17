@@ -1,0 +1,18 @@
+<section class="h-full min-h-screen w-9/12 py-8 pt-18 mx-auto">
+  
+  <%= link_to users_packages_path, class:"p-4" do %>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 12" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M0.5 6C0.5 5.72386 0.723858 5.5 1 5.5H11C11.2761 5.5 11.5 5.72386 11.5 6C11.5 6.27614 11.2761 6.5 11 6.5H1C0.723858 6.5 0.5 6.27614 0.5 6Z"
+        fill="black"></path>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M6.35355 11.3536C6.15829 11.5488 5.84171 11.5488 5.64645 11.3536L0.646448 6.35355C0.451186 6.15829 0.451186 5.84171 0.646448 5.64645L5.64645 0.646448C5.84171 0.451186 6.15829 0.451186 6.35355 0.646448C6.54882 0.84171 6.54882 1.15829 6.35355 1.35355L1.70711 6L6.35355 10.6464C6.54882 10.8417 6.54882 11.1583 6.35355 11.3536Z"
+        fill="black"></path>
+    </svg>
+  <% end %>
+
+  <h2 class="text-2xl md:text-3xl pb-10"> Update Price Package </h2>
+
+  <%= render partial: "users/packages/form", locals: {model: @package, url: users_package_path(@package) , method: :patch} %>
+
+</section>

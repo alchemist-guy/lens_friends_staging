@@ -1,0 +1,27 @@
+.float-label-input:focus-within label,
+.float-label-input input:not(:placeholder-shown) + label {
+  transform: translateY(-1.5rem) scale(0.75);
+  background-color: white;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+
+
+
+.pagy-item {
+  @apply mx-2;
+}
+
+.pagy-nav {
+  @apply flex justify-center list-none;
+}
+
+.pagy-link {
+  @apply px-4 py-2 border border-gray-300 bg-white hover:bg-gray-100 rounded;
+}
+
+.pagy-current {
+  @apply bg-blue-500 text-white;
+}

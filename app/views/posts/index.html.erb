@@ -1,0 +1,469 @@
+<section class="overflow-hidden relative">
+  <div class="container px-4 mx-auto mt-12">
+    <div class="flex flex-wrap items-center -mx-4">
+      <div class="w-full lg:w-1/2 px-4">
+        <h1 class="text-2xl md:text-4xl lg:text-5xl text-center lg:text-left !leading-tight uppercase mb-10" style="font-family: 'Playfair Display', serif !important;"> Connect with photographers and videographers that fit your unique needs </h1>
+        <% if current_user.present? %>
+          <% unless current_user.is_creator %>
+            <h1 class="text-xl md:2xl lg:text-2xl font-semibold text-[#9c9e83] text-center lg:text-left mb-6">CONTINUE AS </h1>
+          <% end %>
+        <% end %>
+        <div class="flex flex-col md:flex-row justify-center lg:justify-start text-center lg:text-left gap-3">
+          <% if current_user.present? %>
+            <% unless current_user.is_creator %>
+              <a class="inline-block py-2 px-6 rounded-l-xl rounded-t-xl bg-white hover:bg-[#9c9e83] hover:text-white hover:border-[#DFC9BA] font-bold leading-loose border-2 border-[#B7BAA7]" href="<%= sellers_path %>">Searching For a Professional</a>
+            <% end %>
+          <% else %>
+            <a class="inline-block py-2 px-6 rounded-l-xl rounded-t-xl bg-[#DFC9BA] text-gray-50 border-2 border-[#DFC9BA] hover:bg-white hover:text-[#DFC9BA] font-bold leading-loose" href="<%= new_user_session_path( role: "client" )%>">Searching For a Professional</a>
+            <a class="inline-block py-2 px-6 rounded-l-xl rounded-t-xl bg-white hover:bg-[#9c9e83] hover:text-white hover:border-[#DFC9BA] font-bold leading-loose border-2 border-[#B7BAA7]" href="<%= new_user_session_path( role: "creator" )%>">Photographer/Videographer</a>
+          <% end %>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/2 mt-20 lg:mt-0">
+        <div class="flex justify-center lg:justify-end px-4 md:px-0">
+          <div class="mr-4 lg:mr-8">
+            <%= image_tag('13.jpg', class: 'block mx-auto mb-8 w-[264px] h-[420px] object-cover transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110') %>
+            <%= image_tag('14.jpg', class: 'block mx-auto mb-8 w-[264px] h-[210px] object-cover transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110') %>
+          </div>
+          <div>
+            <%= image_tag('15.jpg', class: 'block mx-auto mb-8 w-[264px] h-[210px] object-cover transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110') %>
+            <%= image_tag('16.jpg', class: 'block mx-auto mb-8 w-[264px] h-[420px] object-cover transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="relative overflow-hidden">
+  <div class="skew skew-top mr-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-50" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 0 10 10 0 10"></polygon>
+    </svg>
+  </div>
+  <div class="skew skew-top ml-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-100" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 10 10 0 10 10"></polygon>
+    </svg>
+  </div>
+  <div class="py-24 bg-gray-100 radius-for-skewed reveal">
+    <div class="container px-4 mx-auto relative z-10">
+      <div class="mx-auto mb-10 text-center">
+        <h1 class="text-2xl md:text-4xl lg:text-5xl !leading-tight mt-2 mb-6"  style="font-family: 'Playfair Display', serif !important;">
+          <span>SAY GOODBYE TO </span> <span class="text-[#DFC9BA]">ENDLESS SEARCHING</span>
+          <span>AND HELLO TO THE </span> <span class="text-[#DFC9BA]">PERFECT MATCH!</span>
+        </h1>
+        <p class="leading-8 text-lg text-gray-700" style="font-family: 'Playfair Display', serif !important;">Are you searching for that ideal photographer or videographer to capture your special moments? <br><span class="mt-2"> Our matchmaker service connects you with talented photographers and videographers that fit your unique needs, from BUDGET to LOCATION to EVENT DATE</span></p>
+      </div>
+      <div class="flex flex-col md:flex-row gap-2 mt-20">
+        <div class="md:w-4/12">
+          <%= image_tag('family-1.jpg', class: 'h-72 w-full object-cover') %>
+        </div>
+        <div class="md:w-4/12">
+          <%= image_tag('portrait-1.jpg', class: 'h-72 w-full object-cover') %>
+        </div>
+        <div class="md:w-4/12">
+          <%= image_tag('kiss.jpg', class: 'h-72 w-full object-cover') %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-0 left-0 h-full md:flex md:flex-col md:justify-between">
+    <!-- <div class="hidden md:block mb-8 h-32 lg:h-64 w-32 lg:w-64 bg-[#DFC9BA]"></div> -->
+  </div>
+  <div class="absolute top-0 right-0 h-full md:flex md:flex-col md:justify-end">
+    <!-- <div class="hidden md:block h-32 lg:h-64 w-32 lg:w-64 bg-[#B7BAA7]"></div> -->
+  </div>
+</section>
+
+
+<section>
+  <div class="skew skew-top mr-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-100" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 0 10 10 0 10"></polygon>
+    </svg>
+  </div>
+  <div class="skew skew-top ml-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-50" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 10 10 0 10 10"></polygon>
+    </svg>
+  </div>
+  <div class="py-24 bg-gray-50 radius-for-skewed reveal">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap -mx-4">
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
+          <div class="lg:max-w-xl">
+            <h2 class="text-2xl md:text-4xl lg:text-5xl !leading-tight text-center lg:text-left mb-14" style="font-family: 'Playfair Display', serif !important;"> DISCOVER YOUR PERFECT PHOTOGRAPHER AND VIDEOGRAPHER MATCH <span class="block text-[#DFC9BA]"> IN JUST 3 STEPS! </span></h2>
+          </div>
+            <div class="lg:ml-4 w-11/12 md:w-8/12 lg:w-full space-y-12 border-l-2 border-dashed border-[#B7BAA7] text-center lg:text-left m-6 mx-auto">
+              <div class="relative w-full">
+                <div class="absolute -top-0.5 z-10 -ml-6 h-12 w-12 rounded-full bg-[#B7BAA7] text-white flex justify-center items-center"> 1 </div>
+                <div class="ml-10 md:ml-16">
+                  <h4 class="text-xl font-medium">Create a Free Account!</h4>
+                  <p class="text-lg text-gray-700">Sign up now for your free account!</p>
+                </div>
+              </div>
+              <div class="relative w-full">
+                <div class="absolute -top-0.5 z-10 -ml-6 h-12 w-12 rounded-full bg-[#B7BAA7] text-white flex justify-center items-center"> 2 </div>
+                <div class="ml-10 md:ml-16">
+                  <h4 class="text-xl font-medium">Provide Event details </h4>
+                  <p class="text-lg text-gray-700">Provide the details of your event like Budget, Location, Date </p>
+                </div>
+              </div>
+              <div class="relative w-full">
+                <div class="absolute -top-0.5 z-10 -ml-6 h-12 w-12 rounded-full bg-[#B7BAA7] text-white flex justify-center items-center"> 3 </div>
+                <div class="ml-10 md:ml-16">
+                  <h4 class="text-xl font-medium">Explore Matches and Connect</h4>
+                  <p class="text-lg text-gray-700">Take a look at all of your matches and reach out to the ones that seem that like the right fit</p>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="w-full lg:w-1/2 px-8">
+          <div class="relative">
+            <%= image_tag('shadow-photo.png', class: 'absolute top-0 left-0 lg:mt-8 lg:ml-8') %>
+            <%= image_tag('8.jpg', class: 'block w-[541px] h-full lg:h-[555px] relative mx-auto transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="mx-auto mb-10 text-center mt-10">
+    <h1 class="text-2xl md:text-4xl lg:text-5xl !leading-tight mt-2 mb-6"  style="font-family: 'Playfair Display', serif !important;">
+      <span class="text-black">Search for Professionals for every event</span>
+    </h1>
+  </div>
+  <div class="pb-24 bg-gray-50">
+    <div class="hidden md:flex flex-wrap justify-center">
+      <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+        <div class="h-full relative cursor-pointer group/card border overflow-hidden">
+          <%= image_tag('wedding.jpg', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-30 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+          <div class="opacity-20 absolute top-8 left-8">
+            <h3 class="font-black text-gray-500 text-7xl">01</h3>
+          </div>
+          <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+            <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Weddings</h3>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+        <div class="h-full relative cursor-pointer group/card border overflow-hidden">
+          <%= image_tag('family.jpg', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-30 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+          <div class="opacity-20 absolute top-8 left-8">
+            <h3 class="font-black text-gray-500 text-7xl">02</h3>
+          </div>
+          <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+            <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Families</h3>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+        <div class="h-full relative cursor-pointer group/card border overflow-hidden">
+          <%= image_tag('maternity.png', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-30 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+          <div class="opacity-20 absolute top-8 left-8">
+            <h3 class="font-black text-gray-500 text-7xl">03</h3>
+          </div>
+          <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-10">
+            <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Maternity</h3>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+        <div class="h-full relative cursor-pointer group/card border">
+          <%= image_tag('newborn.png', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-30 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+          <div class="opacity-20 absolute top-8 left-8">
+            <h3 class="font-black text-gray-500 text-7xl">04</h3>
+          </div>
+          <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+            <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Newborn</h3>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+        <div class="h-full relative cursor-pointer group/card border">
+          <%= image_tag('portrait.png', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-30 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+          <div class="opacity-20 absolute top-8 left-8">
+            <h3 class="font-black text-gray-500 text-7xl">05</h3>
+          </div>
+          <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+            <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Portrait</h3>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+        <div class="h-full relative cursor-pointer group/card border">
+          <%= image_tag('and-more.jpg', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-30 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+          <div class="opacity-20 absolute top-8 left-8">
+            <h3 class="font-black text-gray-500 text-7xl">06</h3>
+          </div>
+          <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+            <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">And More</h3>
+            <p class="text-lg text-gray-500 m-0">LensFriends connects you with a diverse range of professionals to meet all of your event needs!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="block md:hidden swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+            <div class="h-full relative cursor-pointer group/card border overflow-hidden">
+              <%= image_tag('wedding.jpg', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-30 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+              <div class="opacity-20 absolute top-8 left-8">
+                <h3 class="font-black text-gray-500 text-7xl">01</h3>
+              </div>
+              <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+                <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Weddings</h3>
+                <p class="text-lg text-gray-500 m-0"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+            <div class="h-full relative cursor-pointer group/card border overflow-hidden">
+              <%= image_tag('family.jpg', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-0 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+              <div class="opacity-20 absolute top-8 left-8">
+                <h3 class="font-black text-gray-500 text-7xl">02</h3>
+              </div>
+              <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+                <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Families</h3>
+                <p class="text-lg text-gray-500 m-0"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+            <div class="h-full relative cursor-pointer group/card border overflow-hidden">
+              <%= image_tag('maternity.png', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-0 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+              <div class="opacity-20 absolute top-8 left-8">
+                <h3 class="font-black text-gray-500 text-7xl">03</h3>
+              </div>
+              <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-10">
+                <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Maternity</h3>
+                <p class="text-lg text-gray-500 m-0"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+            <div class="h-full relative cursor-pointer group/card border">
+              <%= image_tag('newborn.png', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-0 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+              <div class="opacity-20 absolute top-8 left-8">
+                <h3 class="font-black text-gray-500 text-7xl">04</h3>
+              </div>
+              <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+                <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Newborn</h3>
+                <p class="text-lg text-gray-500 m-0"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+            <div class="h-full relative cursor-pointer group/card border">
+              <%= image_tag('portrait.png', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-0 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+              <div class="opacity-20 absolute top-8 left-8">
+                <h3 class="font-black text-gray-500 text-7xl">05</h3>
+              </div>
+              <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+                <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">Portrait</h3>
+                <p class="text-lg text-gray-500 m-0"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="md:w-4/12 lg:w-1/6 h-[740px]">
+            <div class="h-full relative cursor-pointer group/card border">
+              <%= image_tag('and-more.jpg', class: 'h-full w-full object-cover object-left opacity-1 lg:opacity-0 group-hover/card:opacity-100 group-hover/card:object-center transition-all duration-300 ease-in-out') %>
+              <div class="opacity-20 absolute top-8 left-8">
+                <h3 class="font-black text-gray-500 text-7xl">06</h3>
+              </div>
+              <div class="bg-white opacity-70 text-center absolute top-[50%] left-0 right-0 py-6 px-12">
+                <h3 class="text-3xl text-gray-900 leading-none font-bold mb-5">And More</h3>
+                <p class="text-lg text-gray-500 m-0">LensFriends connects you with a diverse range of professionals to meet all of your event needs!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="py-10 bg-gray-50 overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="py-16 px-8 bg-white border border-gray-100 rounded-3xl">
+      <div class="max-w-7xl mx-auto reveal">
+        <div class="mx-auto text-center">
+          <span class="inline-block mb-2 font-bold uppercase tracking-widest text-xl"></span>
+          <h2 class="mb-12 text-2xl md:text-4xl lg:text-5xl !leading-tight uppercase" style="font-family: 'Playfair Display', serif !important;">Discover what our customers say</h2>
+        </div>
+        <div class="flex flex-wrap -m-4">
+          <div class="w-full md:6/12 lg:w-4/12 p-4 transition ease-in-out delay-500 hover:-translate-y-1 hover:scale-110">
+            <div class="flex flex-col justify-between px-8 pt-12 pb-8 h-full text-center bg-gray-100 border border-gray-100">
+              <div class="flex-initial mb-8">
+                <p class="text-lg text-gray-700">LensFriends made finding a photographer for my event a breeze! I just set my preferences and was matched with the perfect professional in no time. So happy with the results!</p>
+              </div>
+              <div class="h-20 w-20 rounded-full overflow-hidden bg-gray-300 mx-auto">
+                <img class="h-20 w-20 object-contain object-top" src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg" alt="">
+              </div>
+              <div class="flex-initial mt-2">
+                <h3 class="text-2xl text-gray-900 font-black">Brittany Boote</h3>
+                <p class="text-sm text-gray-500 font-bold">@monicajonhson</p>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:6/12 lg:w-4/12 p-4 transition ease-in-out delay-500 hover:-translate-y-1 hover:scale-110">
+            <div class="flex flex-col justify-between px-8 pt-12 pb-8 h-full text-center bg-gray-100 border border-gray-100 rounded-3xl">
+              <div class="flex-initial mb-8">
+                <p class="text-lg text-gray-700 font-bold">I needed a last-minute videographer for my project, and LensFriends came through! The platform was super easy to navigate, and I found exactly what I was looking for. Highly recommend!</p>
+              </div>
+              <div class="h-20 w-20 rounded-full overflow-hidden bg-gray-300 mx-auto">
+                <img class="h-20 w-20 object-contain object-top" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+              </div>
+              <div class="flex-initial mt-2">
+                <h3 class="text-2xl text-gray-900 font-black">Dawn Charles</h3>
+                <p class="text-sm text-gray-500 font-bold">@monicajonhson</p>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:6/12 lg:w-4/12 p-4 transition ease-in-out delay-500 hover:-translate-y-1 hover:scale-110">
+            <div class="flex flex-col justify-between px-8 pt-12 pb-8 h-full text-center bg-gray-100 border border-gray-100">
+              <div class="flex-initial mb-8">
+                <p class="text-lg text-gray-700">As someone new to the photography world, LensFriends was a lifesaver. I was able to browse through different professionals, read reviews, and find someone who fit my budget and style perfectly. Couldn't be happier with my experience!</p>
+              </div>
+              <div class="h-20 w-20 rounded-full overflow-hidden bg-gray-300 mx-auto">
+                <img class="h-20 w-20 object-contain object-top" src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg" alt="">
+              </div>
+              <div class="flex-initial mt-2">
+                <h3 class="text-2xl text-gray-900 font-black">Emily Margars</h3>
+                <p class="text-sm text-gray-500 font-bold">@monicajonhson</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="skew skew-top mr-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-50" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 0 10 10 0 10"></polygon>
+    </svg>
+  </div>
+  <div class="skew skew-top ml-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-100" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 10 10 0 10 10"></polygon>
+    </svg>
+  </div>
+  <div class="py-20 bg-gray-100 radius-for-skewed reveal">
+    <div class="container mx-auto px-4">
+      <div class="mb-8 md:mb-16 mx-auto text-center">
+        <h2 class="mt-4 mb-6 text-2xl md:text-4xl lg:text-5xl !leading-tight" style="font-family: 'Playfair Display', serif !important;">DID YOU LOVE WORKING WITH THE PROFESSIONAL YOU FOUND ON LENSFRIENDS?</h2>
+        <span class="font-bold">GET YOUR PHOTOS AND VIDEOS FEATURED ON OUR INSTAGRAM! 
+          <span class="bg-[#c9ad9a] border-[#c9ad9a] text-gray-50 rounded-lg block md:inline-block px-2 ml-2 animate-bounce">
+              TAG #LENSFRIENDSAPP
+          </span>
+        </span>
+      </div>
+      <div class="flex flex-wrap -mx-4 mb-12">
+        <div class="flex flex-wrap w-full lg:w-1/2 mb-8 lg:mb-0">
+          <div class="w-full md:w-1/2 px-4 mb-8">
+            <%= image_tag('family-2.jpg', class: 'h-64 w-full object-cover') %>
+          </div>
+          <div class="w-full md:w-1/2 px-4 mb-8">
+            <%= image_tag('pink.jpg', class: 'h-64 w-full object-cover') %>
+          </div>
+          <div class="w-full px-4">
+            <%= image_tag('kiss-2.jpg', class: 'h-64 h-full lg:h-[25rem] w-full object-cover') %>
+          </div>
+        </div>
+        <div class="flex flex-wrap w-full lg:w-1/2">
+          <div class="w-full px-4 mb-8">
+            <div class="relative">
+              <%= image_tag('kiss-1.jpg', class: 'h-[25rem] w-full object-cover') %>
+              <div class="absolute inset-0 bg-gray-900 opacity-80 rounded-lg"></div>
+              <div class="absolute inset-0 p-6 flex justify-center">
+                <div class="max-w-md my-auto">
+                  <span class="font-bold text-[#B6B8A5]">Follow us on Instagram</span>
+                  <h2 class="text-xl md:text-4xl lg:text-5xl text-white font-bold leading-loose my-4">Get your photos featured on our Instagram</h2>
+                  <div class="max-w-xs">
+                    <p class="mb-6 text-gray-400 underline">@lensfriends_app</p>
+                    <a class="inline-block py-2 px-6 rounded-l-xl rounded-t-xl bg-[#B6B8A5] hover:bg-[#9c9e83] text-gray-50 font-bold leading-loose" href="#">See More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 px-4 mb-8 lg:mb-0">
+            <%= image_tag('neck.jpg', class: 'h-64 w-full object-cover') %>
+          </div>
+          <div class="w-full md:w-1/2 px-4">
+            <%= image_tag('wedding-1.jpg', class: 'h-64 w-full object-cover') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="skew skew-bottom mr-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-100" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 0 10 0 0 10"></polygon>
+    </svg>
+  </div>
+  <div class="skew skew-bottom ml-for-radius">
+    <svg class="h-8 md:h-12 lg:h-20 w-full text-gray-50" viewbox="0 0 10 10" preserveaspectratio="none">
+      <polygon fill="currentColor" points="0 0 10 0 10 10"></polygon>
+    </svg>
+  </div>
+</section>
+
+
+
+
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+  });
+
+  window.addEventListener('scroll', reveal);
+
+  function reveal(){
+    var reveals = document.querySelectorAll('.reveal');
+
+    for(var i = 0; i < reveals.length; i++) {
+      var windowheight = window.innerHeight;
+      var revealtop    = reveals[i].getBoundingClientRect().top;
+      var revealpoint  = 150;
+
+      if( revealtop < windowheight - revealpoint ){
+        reveals[i].classList.add('active');
+      }
+      else{
+        reveals[i].classList.remove('active');
+      }
+    }
+  }
+
+
+</script>

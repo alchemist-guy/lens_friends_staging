@@ -1,0 +1,159 @@
+<div class="p-4">
+  <div class="mb-6">
+    <header class="mb-8">
+      <p class="text-2xl">Search Filters</p>
+    </header>
+    <div class="">
+      <%= search_form_for @q, url: sellers_path do |f| %>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-2 mb-3">
+          <%
+=begin%>
+ <div class="relative">
+            <%#= f.select_field :artist_eq, [['Select your choice', nil], ['Photographer', 'Photographer'], ['Videographer', 'Videographer']], {}, { id: 'browse-artist', class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400' } %>
+            <label for="browse-artist" class="text-xs md:text-sm transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Select Artist</label>
+          </div> 
+<%
+=end%>
+          <div class="relative flex-1">
+            <% boolean_fields = %w[family portrait couples product graduation maternity newborn interior fashion branding wedding boudoir].sort %>
+
+            <%= select_tag('q[session_type_eq][]', options_for_select([["All session types", ""]] + boolean_fields.map { |field| ["#{field}", field.humanize] }, selected: params.dig(:q, :session_type_eq)), { class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400" }) %>
+
+            <label for="session" class="text-xs md:text-sm transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Session Type</label>
+          </div>
+          <%
+=begin%>
+ <div class="relative float-label-input">
+            <%#= f.date_field :off_days_start_date_eq, class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400', min: Date.today %>
+            <label for="date" class="text-xs md:text-sm absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Desired Date</label>
+          </div> 
+<%
+=end%>
+          <div class="relative flex-1">
+            <%= f.collection_select(:state_eq, USA_STATES, :second, :first, { prompt: 'Select State' }, { class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400" }) %>
+            <label for="session" class="text-xs md:text-sm transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Location</label>
+          </div>
+          <div class="relative">
+            <%= f.submit "Apply Filter", class: "inline-block focus:outline-none focus:border-none border-none py-2 px-4 appearance-none leading-normal rounded-full bg-[#9c9e83] hover:bg-[#B6B8A5] text-white text-center" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% if @sellers.present? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <% @sellers.each do |seller| %>
+        <article class="rounded-xl overflow-hidden bg-white" style="box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);">
+
+          <% images = seller.session_type.galleries.first.images %>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <% images.each do |image| %>
+                <div class="swiper-slide">
+                  <%= image_tag(image, class: 'h-56 md:h-64 lg:h-72 w-full object-cover', loading: 'lazy') %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="bg-white p-4 pt-2">
+            <%= link_to seller_path(seller), class:"flex justify-between text-gray-700 hover:text-[#B7BAA7]" do %>
+              <div class="mr-4">
+                <h3 class="text-xl font-medium mb-1"><%= seller.first_name.capitalize %> <%= seller.last_name.capitalize %></h3>
+                <p class="text-sm font-light"><%= seller.state.capitalize %>, USA</p>
+              </div>
+              <div class="relative">
+                <div class="relative h-8 w-8 overflow-hidden rounded-full bg-cover bg-center">
+                  <%= image_tag(seller.profile_pic, class: 'object-cover h-full w-full', loading: 'lazy') %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <footer class="flex w-full items-center justify-between rounded-b-xl bg-gray-50">
+            <%= form_with(url: book_request_communication_path(seller), method: :post, local: true, class: 'mt-6', html: {data: {turbo: "false"}}) do |form| %>
+              <%= form.hidden_field :seller_id, value: seller.id %>
+              <button type="submit" class="uppercase text-[#B7BAA7] hover:text-[#9c9e83] m-4">Email Professional</a>
+            <% end %>
+          </footer>
+        </article>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="bg-white mb-10 rounded-lg p-6 mt-10 mx-auto max-w-lg text-center w-full">
+      <div class="mb-4">
+        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M3 7v10c0 1.1.9 2 2 2h2a2 2 0 002-2v-5h6v5a2 2 0 002 2h2a2 2 0 002-2V7m0-3a2 2 0 00-2-2h-2a2 2 0 00-2 2v5H9V4a2 2 0 00-2-2H5a2 2 0 00-2 2v3z"></path>
+        </svg>
+      </div>
+      <p class="text-xl text-gray-800 mb-2">No Professionals Found</p>
+      <p class="text-gray-600">We couldn't find any professionals in your particular location and session. But here is list of other professionals</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <% @random_sellers.each do |seller| %>
+        <article class="rounded-xl overflow-hidden bg-white" style="box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);">
+
+          <% images = seller.session_type.galleries.first.images %>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <% images.each do |image| %>
+                <div class="swiper-slide">
+                  <%= image_tag(image, class: 'h-56 md:h-64 lg:h-72 w-full object-cover', loading: 'lazy') %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="bg-white p-4 pt-2">
+            <%= link_to seller_path(seller), class:"flex justify-between text-gray-700 hover:text-[#B7BAA7]" do %>
+              <div class="mr-4">
+                <h3 class="text-xl font-medium mb-1"><%= seller.first_name.capitalize %> <%= seller.last_name.capitalize %></h3>
+                <p class="text-sm font-light"><%= seller.state.capitalize %>, USA</p>
+              </div>
+              <div class="relative">
+                <div class="relative h-8 w-8 overflow-hidden rounded-full bg-cover bg-center">
+                  <%= image_tag(seller.profile_pic, class: 'object-cover h-full w-full', loading: 'lazy') %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <footer class="flex w-full items-center justify-between rounded-b-xl bg-gray-50">
+            <%= form_with(url: book_request_communication_path(seller), method: :post, local: true, class: 'mt-6', html: {data: {turbo: "false"}}) do |form| %>
+              <%= form.hidden_field :seller_id, value: seller.id %>
+              <button type="submit" class="uppercase text-[#B7BAA7] hover:text-[#9c9e83] m-4">Email Professional</a>
+            <% end %>
+          </footer>
+        </article>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col md:flex-row flex-wrap items-center justify-between my-6 mt-8">
+    <div class="w-full lg:w-1/3 flex items-center justify-center lg:justify-normal mb-4 lg:mb-0">
+      <p class="text-xs text-gray-400">Total Professionals <%= @pagy.count %></p>
+    </div>
+    <div class="w-full lg:w-auto flex items-center justify-center">
+     <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    autoplay: {
+      delay: 3000, // Set the delay between slides in milliseconds
+    },
+    // If you need pagination
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>

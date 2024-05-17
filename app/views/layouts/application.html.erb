@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LensFriendsApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="h-full min-h-screen w-full">
+      
+      <%= render partial: "shared/header" %>
+      
+      <span data-controller="popover" >
+        <% if notice.present? %>
+          <div id="notice-popover" class="bg-green-500 text-white p-2 rounded-md shadow-md fixed top-4 right-4 z-50 mt-16 md:mt-20 transition-opacity duration-500">
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <!-- Alert Popover -->
+        <% if alert.present? %>
+          <div id="alert-popover" class="bg-red-500 text-white p-2 rounded-md shadow-md fixed top-4 right-4 z-50 mt-16 md:mt-20 transition-opacity duration-500" >
+            <%= alert %>
+          </div>
+        <% end %>
+      </span>
+
+      <%= yield %>
+
+      <%= render partial: "shared/footer" %>
+
+    </main>
+  </body>
+</html>

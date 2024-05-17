@@ -1,0 +1,47 @@
+<div class="md:flex md:gap-2 antialiased bg-gray-100">
+  <%= render partial: "admin/shared/sidebar" %>
+    
+  <main class="bg-gray-100 h-screen w-full overflow-y-auto relative">
+
+    <div class="bg-white sticky top-0 shadow p-4 mb-2">
+      <%= render partial: "admin/shared/header" %>
+    </div>
+
+    <section class="bg-white rounded shadow">
+      <header class="p-4 text-lg font-medium border-b">
+        <div class="flex flex-col md:flex-row gap-4 justify-between">
+          <p>Emails</p>
+        </div>
+      </header>
+      <section class="py-8">
+        <div class="container px-4 mx-auto">
+          <%= form_with(url: admin_email_bulk_shopper_path(current_admin), method: :post) do |form| %>
+            <div>
+              <h3 class="mb-2 text-xl font-medium text-gray-900">Send All</h3>
+              <p class="mb-5 text-sm text-gray-500">Send Emails to all Shoppers in bulk</p>
+              <%= form.text_field :topic, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-8", placeholder: "Subject", required: true %>
+              <%= form.text_area :message, rows: 6, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Your message...", required: true %>
+              <button type="submit" class="w-full md:w-auto font-medium px-4 py-2 text-base bg-[#B7BAA7] hover:bg-[#9c9e83] text-white border border-gray-200 rounded-full mt-6">Send</button>
+            </div>
+          <% end %>
+
+          <div class="bg-gray-100 my-8 md:my-16 h-1"></div>
+
+
+          <%= form_with(url: admin_email_bulk_seller_path(current_admin), method: :post) do |form| %>
+            <div>
+              <h3 class="mb-2 text-xl font-medium text-gray-900">Send All</h3>
+              <p class="mb-5 text-sm text-gray-500">Send Emails to all Professionals in bulk</p>
+              <%= form.text_field :topic, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-8", placeholder: "Subject", required: true %>
+              <%= form.text_area :message, rows: 6, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5", placeholder: "Your message...", required: true %>
+              <button type="submit" class="w-full md:w-auto font-medium px-4 py-2 text-base bg-[#B7BAA7] hover:bg-[#9c9e83] text-white border border-gray-200 rounded-full mt-6">Send</button>
+            </div>
+          <% end %>
+          
+          
+        </div>
+      </section>
+    </section>
+
+  </main>
+</div>

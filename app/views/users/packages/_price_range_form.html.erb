@@ -1,0 +1,33 @@
+<div class="price-package-wrapper" data-new-record="<%= f.object.new_record? %>">
+
+
+  <div class="flex gap-x-2 mb-3 items-center">
+    <div class="relative w-1/2">
+      <%= f.select :hour,
+               [['Select hour', nil, { class: 'text-gray-400' }]] + (1..5).map { |hour| [hour.to_s, hour] },
+               {},
+               class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400',
+               required: true %>
+      <label for="priceperhour" class="transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Per Hour</label>
+    </div>
+    <div class="relative float-label-input w-1/2">
+      <%= f.number_field :price,
+                    class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400',
+                    placeholder: '',
+                    required: true,
+                    pattern: '\d*' %>
+      <label for="price" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Price </label>
+    </div>
+    
+    <button class="" type="button" data-action="price-package#remove click->price-package#checkClass">
+      <svg class="cursor-pointer text-red-500" xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 50 50">
+        <path fill="currentColor" d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17s-7.6 17-17 17m0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15s15-6.7 15-15s-6.7-15-15-15"/>
+        <path fill="currentColor" d="M16 24h18v2H16z"/>
+      </svg>
+    </button>
+
+  </div>
+
+
+  <%= f.hidden_field :_destroy %>
+</div>

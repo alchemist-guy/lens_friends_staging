@@ -1,0 +1,247 @@
+<div class="bg-gray-50 mx-2">
+
+  <div class="container py-8 pt-18 mx-auto">
+    <header class="px-8 md:px-0 mb-10">
+        <h1 class="text-2xl md:text-3xl mb-2" style="font-family: 'Playfair Display', serif !important;"> Account Settings </h1>
+        <p class="text-gray-700 mb-3">View and manage your profile and account settings.</p>
+        <a class="group flex flex-wrap text-xs text-neutral-500 hover:text-neutral-600" href="<%= current_user.is_client ? sellers_path : users_profiles_path %>">
+          <svg class="mr-3 text-neutral-400 group-hover:text-neutral-500" width="16" height="17" viewbox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.31311 13.5202C6.50838 13.7155 6.82496 13.7155 7.02022 13.5202C7.21548 13.325 7.21548 13.0084 7.02022 12.8131L6.31311 13.5202ZM2 8.49999L1.64645 8.14644C1.55268 8.24021 1.5 8.36739 1.5 8.49999C1.5 8.6326 1.55268 8.75978 1.64645 8.85355L2 8.49999ZM7.02022 4.18688C7.21548 3.99162 7.21548 3.67504 7.02022 3.47977C6.82496 3.28451 6.50838 3.28451 6.31311 3.47977L7.02022 4.18688ZM14 8.99999C14.2761 8.99999 14.5 8.77614 14.5 8.49999C14.5 8.22385 14.2761 7.99999 14 7.99999V8.99999ZM7.02022 12.8131L2.35355 8.14644L1.64645 8.85355L6.31311 13.5202L7.02022 12.8131ZM2.35355 8.85355L7.02022 4.18688L6.31311 3.47977L1.64645 8.14644L2.35355 8.85355ZM2 8.99999L14 8.99999V7.99999L2 7.99999L2 8.99999Z" fill="currentColor"></path>
+          </svg>
+          <span>Back to Dashboard</span>
+        </a>
+      </header>
+
+    <section>
+        <header>
+          <p class="text-lg text-gray-600 uppercase mb-3">Personal Information</p>
+        </header>
+
+
+      <%= form_with(model: current_user, url: personal_info_users_setting_path(current_user), method: :patch) do |form| %>
+        <div class="border border-gray-100 rounded-lg bg-white p-8 mb-3">
+          <p class="text-lg text-gray-600 mb-8">Profile</p>
+          <span id="profile-info-errors">
+            <%= render partial: "shared/errors", locals:{ error_messages: @error_messages }%>
+          </span>
+          <%
+=begin%>
+ <div id="profile" class="relative flex gap-6 items-center mb-8 border border-gray-300 rounded-md p-3 py-4" data-controller="profile-form">
+            <!-- for deault picture -->
+            <% if current_user.profile_pic.attached? %>
+              <%= image_tag(current_user.profile_pic, data: { profile_form_target: "preview" }, class: "h-20 w-20 border-2 border border-gray-300 rounded-full flex justify-center items-center") %>
+            <% else %>
+              <div class="h-20 w-20 border-2 border-dashed border-gray-300 rounded-full flex justify-center items-center" data-profile-form-target="defaultImage">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#9ca3af" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"/></svg>
+              </div>
+              <%= image_tag("", data: {profile_form_target: "preview"}, class: "hidden h-20 w-20 border-2 border border-gray-300 rounded-full flex justify-center items-center") %>
+            <% end %>
+            <!--  profile picture preview after select any picture  -->
+
+            <div>
+                <%= form.file_field :profile_pic, accept: 'image/*', data: { profile_form_target:"input", action: "change->profile-form#preview" }, class: "file:bg-[#d6dacc] file:border-none file:cursor-pointer block w-full leading-loose rounded overflow-hidden text-xs text-gray-900 bg-gray-50 border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none", required: current_user.profile_pic.blank? %>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">PNG, JPG or JPEG (MAX. 800x800px).</p>
+            </div>
+            <label for="profile" class="absolute -top-3 left-3 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Profile Pictures</label>
+          </div> 
+<%
+=end%>
+          <div class="flex gap-x-2 mb-3">
+            <div class="relative float-label-input w-1/2">
+              <%= form.text_field :user_name, placeholder: "", autofocus: true, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true %>
+              <label for="u-name" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Username </label>
+            </div>
+            <div class="relative float-label-input w-1/2">
+              <% if current_user.is_client? %>
+                <%= form.email_field :email, placeholder: "", readonly: true, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400" %>
+                <label for="b-name" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Email </label>
+              <% else %>
+                <%= form.text_field :business_name, placeholder: "", autofocus: true, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true %>
+                <label for="b-name" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Bussiness </label>
+              <% end %>
+            </div>
+          </div>
+          <div class="flex gap-x-2">
+            <div class="relative float-label-input w-1/2">
+              <%= form.text_field :first_name, placeholder: "", autofocus: true, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true %>
+              <label for="fname" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> First Name </label>
+            </div>
+            <div class="relative float-label-input w-1/2">
+              <%= form.text_field :last_name, placeholder: "", autofocus: true, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true %>
+              <label for="lname" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Last Name </label>
+            </div>
+          </div>
+          <div class="flex mt-8">
+            <button class="py-2 px-8 font-semibold rounded-full focus:ring focus:ring-indigo-300 bg-[#9c9e83] hover:bg-[#d6dacc] text-white transition ease-in-out duration-200" type="submit">Update</button>
+          </div>
+        </div>
+      <% end %>
+
+
+      <header>
+        <p class="text-lg text-gray-600 uppercase mb-3">Contact Customer Support</p>
+      </header>
+
+
+
+      <%= form_with(model: current_user, url: contact_support_users_setting_path(current_user), method: :post, html: {data: {turbo: "false"}}) do |form| %>
+        <div class="border border-gray-100 rounded-lg bg-white p-8 mb-3">
+          <header class="mb-8">
+            <p class="text-lg text-gray-600">Contact</p>
+          </header>
+          <div class="relative float-label-input w-full mb-3">
+            <input type="email" id="mail" placeholder="" value="hello@lensfriendsapp.com" class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400"  readonly />
+            <label for="mail" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> E-mail address </label>
+            <p class="text-xs text-gray-600 pl-2 mt-1">Contact Customer Support</p>
+          </div>
+          <div class="flex mt-8">
+            <button class="py-2 px-8 font-semibold rounded-full focus:ring focus:ring-indigo-300 bg-[#9c9e83] hover:bg-[#d6dacc] text-white transition ease-in-out duration-200" type="submit">Send Email</button>
+          </div>
+        </div>
+      <% end %>
+
+
+    </section>
+
+
+    <section class="mt-8">
+
+      <header class="mb-3">
+        <p class="text-lg text-gray-600 uppercase">Security & Password</p>
+      </header>
+      <% if current_user.provider == "google_oauth2" %>
+        <div class="border border-gray-100 rounded-lg bg-white p-8">
+          <p class="text-lg mb-3">Password Status</p>
+          <p class="text-gray-500"> You have signed up using Google authentication, so you cannot change your password. </p>
+        </div>
+      <% else %>
+        <%= form_for(current_user, url: change_password_users_setting_path(current_user), html: { method: :patch }) do |f| %>
+          <div class="border border-gray-100 rounded-lg bg-white p-8">
+            <p class="text-lg text-gray-600 mb-8">Change Password</p>
+            <span id="password-errors">
+              <%= render partial: "shared/errors", locals:{ error_messages: @error_messages }%>
+            </span>
+            <div class="relative mb-3 float-label-input">
+              <%= f.password_field :current_password, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true %>
+              <label for="old-pass" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Old Password</label>
+            </div>
+            <div class="relative mb-3 float-label-input">
+              <%= f.password_field :password, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true, autocomplete: "new-password" %>
+              <label for="new-pass" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">New Password</label>
+            </div>
+            <div class="relative mb-3 float-label-input">
+              <%= f.password_field :password_confirmation, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true, autocomplete: "new-password" %>
+              <label for="confirm-pass" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Confirm Password</label>
+            </div>
+            <div class="flex mt-8">
+              <%= f.submit "Change Password", class: "py-2 px-8 font-semibold rounded-full focus:ring focus:ring-indigo-300 bg-[#9c9e83] hover:bg-[#d6dacc] text-white transition ease-in-out duration-200" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+
+    
+    </section> 
+
+    <% if current_user.is_creator %>
+      <% if current_user.subscription_status == 'active' %>
+        <section class="mt-8">
+          <header class="mb-3">
+            <p class="text-lg text-gray-600 uppercase">Billing & Payments</p>        
+          </header>
+          <div class="border border-gray-100 rounded-lg bg-white p-8">
+            <p class="text-lg mb-3">Billing Method</p>
+            <p class="text-gray-500"> You have a subscribed account  <a href="<%= dashboard_users_subscription_path(current_user) %>" class="underline">Manage Subscription</a> </p>
+          </div>
+        </section>
+      <% else %>
+        <section class="mt-8">
+          <header class="mb-3">
+            <p class="text-lg text-gray-600 uppercase">Billing & Payments</p>        
+          </header>
+          <div class="border border-gray-100 rounded-lg bg-white p-8">
+            <p class="text-lg mb-3">Billing Method</p>
+            <p class="text-gray-500"> You haven’t set up any billing methods yet! <a href="<%= users_subscriptions_path %>" class="underline">Add a billing method</a> </p>
+          </div>
+        </section>
+      <% end %>
+    <% end %>
+
+    <% if current_user.is_client %>
+      <section class="mt-8">
+
+
+        <header class="mb-3">
+          <p class="text-lg text-gray-600 uppercase">Reviews</p>        
+        </header>
+        <div class="border border-gray-100 rounded-lg bg-white p-8">
+          <p class="text-lg text-gray-600 mb-3">Review Info</p>
+          <p class="text-gray-500">Currently has no reviews. Get a review request! <a href="#" class="underline">Request for review</a></p>
+        </div>
+
+
+      </section>
+    <% end %>
+
+    <section class="mt-8">
+
+
+      <header class="mb-3">
+        <p class="text-lg text-gray-600 uppercase">Sign Out</p>        
+      </header>
+      <div class="border border-gray-100 rounded-lg bg-white p-8">
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'py-2 px-8 font-semibold rounded-full focus:ring focus:ring-indigo-300 bg-red-600 hover:bg-red-800 text-white transition ease-in-out duration-200' %>
+      </div>
+
+
+    </section>
+
+    <section class="mt-8">
+
+
+      <header class="mb-3">
+        <p class="text-lg text-gray-600 uppercase">Delete Account</p>        
+      </header>
+
+      <%= form_with(model: current_user, url: delete_account_users_setting_path(current_user), method: :post) do |form| %>
+        <div class="border border-gray-100 rounded-lg bg-white p-8">
+          <p class="text-lg text-gray-600 mb-8">Delete your account</p>
+          <div class="flex gap-x-2 mb-3">
+            <div class="relative float-label-input w-1/2">
+              <input type="text" id="u-id" placeholder="" value="<%= current_user.id %>" readonly class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400" required />
+              <label for="u-id" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> User ID </label>
+            </div>
+            <div class="relative float-label-input w-1/2">
+              <input type="text" id="name" placeholder="" value="<%= current_user.first_name %> <%= current_user.last_name %>" readonly class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400" required />
+              <label for="name" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Name </label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="relative float-label-input w-full">
+              <input type="email" id="mail" placeholder="" value="<%= current_user.email %>" class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400"  readonly />
+              <label for="mail" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Email </label>
+            </div>
+          </div>
+          <%
+=begin%>
+ <div class="relative mb-3 float-label-input">
+            <input type="password" id="pass" placeholder="" value="" class="block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400" required />
+            <label for="pass" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Confirm Password </label>
+          </div> 
+<%
+=end%>
+          <div class="flex mt-8">
+            <button class="py-2 px-8 font-semibold rounded-full focus:ring focus:ring-indigo-300 bg-red-600 hover:bg-red-800 text-white transition ease-in-out duration-200" type="submit">Delete your Account</button>
+          </div>
+           <p class="mt-4 text-gray-500">This option cannot be undone.</p>
+        </div>
+      <% end %>
+
+
+
+    </section>
+
+  </div>
+
+</div>

@@ -1,0 +1,48 @@
+<section class="container mx-auto p-4 mt-16 pb-6">
+  
+  <div class="mb-4">
+    <%= link_to users_gallery_index_path(), class:"mb-4" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 12" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0.5 6C0.5 5.72386 0.723858 5.5 1 5.5H11C11.2761 5.5 11.5 5.72386 11.5 6C11.5 6.27614 11.2761 6.5 11 6.5H1C0.723858 6.5 0.5 6.27614 0.5 6Z"
+          fill="black"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M6.35355 11.3536C6.15829 11.5488 5.84171 11.5488 5.64645 11.3536L0.646448 6.35355C0.451186 6.15829 0.451186 5.84171 0.646448 5.64645L5.64645 0.646448C5.84171 0.451186 6.15829 0.451186 6.35355 0.646448C6.54882 0.84171 6.54882 1.15829 6.35355 1.35355L1.70711 6L6.35355 10.6464C6.54882 10.8417 6.54882 11.1583 6.35355 11.3536Z"
+          fill="black"></path>
+      </svg>
+    <% end %>
+  </div>
+
+  <h2 class="text-2xl md:text-3xl mb-6"> <%= @gallery.gallery_type.titleize %> </h2>
+  <div class="flex justify-between items-center">
+    <p class="text-gray-700"><%= @gallery.images.count %> photos</p>
+    <%= link_to edit_users_gallery_path(@gallery), class:"focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#B6B8A5] hover:bg-[#9c9e83] text-white text-center" do %>Edit Gallery<% end %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-8" data-controller="lightbox">
+    <%= render "users/gallery/picture_modal" %>
+    <% if @gallery.images.attached? %>
+      <% @gallery.images.each do |image| %>
+        <div class="relative group" >
+            <%= image_tag( image, class:"h-72 w-full object-cover group-hover:opacity-75", data: { action: "click->lightbox#handleOpen", lightbox_url_param: users_gallery_attachments_path(@gallery),  lightbox_key_param: image.key } ) %>
+        </div>
+      <% end %>
+    <% end %>  
+  </div>
+
+  <div class="flex justify-between items-center mt-10">
+    <p class="text-gray-700"><%= @gallery.videos.count %> videos</p>
+  </div>
+
+
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-8">
+    <% if @gallery.videos.attached? %>
+      <% @gallery.videos.each do |video| %>
+        <div class="relative group" >
+          <%= video_tag(video, controls: true, class: "h-72 w-full object-cover group-hover:opacity-75") %>
+        </div>
+      <% end %>
+    <% end %>  
+  </div>
+
+</section>

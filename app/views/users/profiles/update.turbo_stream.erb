@@ -1,0 +1,3 @@
+<%= turbo_stream.update "profile-errors" do %>
+  <%= render partial: "shared/errors", locals: { error_messages: current_user.errors } %>
+<% end %>

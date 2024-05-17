@@ -1,0 +1,69 @@
+
+
+
+<aside class="w-full md:h-screen md:w-64 bg-white shadow hidden md:flex md:flex-col">
+  <header class="border-b border-solid border-gray-100 flex-grow">
+    <div class="flex items-center justify-center">
+      <a class="inline-block" href="#">
+        <%= image_tag('logo.png', class: 'h-8 w-9 md:h-12 md:w-12 border-2 border-black') %>
+      </a>
+      <h1 class="py-6 px-4 text-gray-700 text-base font-medium">LensFriends</h1>
+    </div>
+  </header>
+  <nav class="overflow-y-hidden h-full flex-grow">
+    <header>
+      <span class="text-xs text-gray-500 block py-6 px-6">MENU</span>
+    </header>
+    <ul class="px-4">
+      <li class="flex gap-2 items-center rounded text-gray-700 py-3 px-6 hover:bg-[#9c9e83] hover:text-white group/link">
+        <%= link_to admin_home_index_path, class:"flex gap-2" do %>
+          <svg class="group-hover/link:text-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M19.75 10a.75.75 0 0 0-1.5 0zm-14 0a.75.75 0 0 0-1.5 0zm14.72 2.53a.75.75 0 1 0 1.06-1.06zM12 3l.53-.53a.75.75 0 0 0-1.06 0zm-9.53 8.47a.75.75 0 1 0 1.06 1.06zM7 21.75h10v-1.5H7zM19.75 19v-9h-1.5v9zm-14 0v-9h-1.5v9zm15.78-7.53l-9-9l-1.06 1.06l9 9zm-10.06-9l-9 9l1.06 1.06l9-9zM17 21.75A2.75 2.75 0 0 0 19.75 19h-1.5c0 .69-.56 1.25-1.25 1.25zm-10-1.5c-.69 0-1.25-.56-1.25-1.25h-1.5A2.75 2.75 0 0 0 7 21.75z"/></svg>
+          Home
+        <% end %>
+      </li>
+      <li class="flex gap-2 items-center rounded text-gray-700 py-3 px-6 hover:bg-[#9c9e83] hover:text-white group/link">
+        <%= link_to admin_sellers_path, class:"flex gap-2" do %>
+          <svg class="group-hover/link:text-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="currentColor" d="M119.76 217.94A8 8 0 0 1 112 224a8.13 8.13 0 0 1-2-.24l-32-8a8 8 0 0 1-2.5-1.11l-24-16a8 8 0 1 1 8.88-13.31l22.84 15.23l30.66 7.67a8 8 0 0 1 5.88 9.7m132.69-96.46a15.89 15.89 0 0 1-8 9.25l-23.68 11.84l-55.08 55.09a8 8 0 0 1-7.6 2.1l-64-16a8.06 8.06 0 0 1-2.71-1.25l-55.52-39.64l-24.28-12.14a16 16 0 0 1-7.16-21.46l24.85-49.69a16 16 0 0 1 21.46-7.16l22.06 11l53-15.14a8 8 0 0 1 4.4 0l53 15.14l22.06-11a16 16 0 0 1 21.46 7.16l24.85 49.69a15.9 15.9 0 0 1 .89 12.21m-46.18 12.94L179.06 80h-31.82L104 122c12.66 8.09 32.51 10.32 50.32-7.63a8 8 0 0 1 10.68-.61l34.41 27.57Zm-187.54-18l17.69 8.85l24.85-49.69l-17.69-8.85ZM188 152.66l-27.71-22.19c-19.54 16-44.35 18.11-64.91 5a16 16 0 0 1-2.72-24.82a.6.6 0 0 1 .08-.08l44.86-43.51l-9.6-2.74l-50.42 14.41l-27.37 54.73l49.2 35.15l58.14 14.53Zm49.24-36.24l-24.82-49.69l-17.69 8.85l24.85 49.69Z"/></svg>
+          Professional
+        <% end %>
+      </li>
+      <li class="flex gap-2 items-center rounded text-gray-700 py-3 px-6 hover:bg-[#9c9e83] hover:text-white group/link">
+        <%= link_to admin_shoppers_path, class:"flex gap-2" do %>
+        <svg class="group-hover/link:text-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M5.5 8a2.5 2.5 0 1 1 5 0a2.5 2.5 0 0 1-5 0M8 4a4 4 0 1 0 0 8a4 4 0 0 0 0-8m7.5 5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0M17 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6m-2.752 13.038c.703.285 1.604.462 2.753.462c2.282 0 3.586-.697 4.297-1.558c.345-.418.52-.84.61-1.163a2.728 2.728 0 0 0 .093-.573v-.027A2.179 2.179 0 0 0 19.822 14H14.18c-.028 0-.055 0-.082.002c.394.41.68.925.816 1.498h4.908c.372 0 .674.299.679.669a1.236 1.236 0 0 1-.04.212a1.6 1.6 0 0 1-.32.605c-.35.426-1.172 1.014-3.14 1.014c-.98 0-1.676-.146-2.17-.345c-.108.4-.286.883-.583 1.383M4.25 14A2.25 2.25 0 0 0 2 16.25v.278a2.073 2.073 0 0 0 .014.208a4.487 4.487 0 0 0 .778 2.07C3.61 19.974 5.172 21 8 21c2.828 0 4.39-1.025 5.208-2.195a4.484 4.484 0 0 0 .778-2.07a2.992 2.992 0 0 0 .014-.207v-.278A2.25 2.25 0 0 0 11.75 14zm-.75 2.507v-.257a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 .75.75v.257l-.007.08a2.986 2.986 0 0 1-.514 1.358C11.486 18.65 10.422 19.5 8 19.5s-3.486-.85-3.98-1.555a2.986 2.986 0 0 1-.513-1.358a1.527 1.527 0 0 1-.007-.08"/></svg>
+          Shopper
+        <% end %>
+      </li>
+      <li class="flex gap-2 items-center rounded text-gray-700 py-3 px-6 hover:bg-[#9c9e83] hover:text-white group/link">
+        <%= link_to admin_earnings_path, class:"flex gap-2" do %>
+          <svg class="group-hover/link:text-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><g fill="currentColor"><path d="M15.84 19.345h.07c1.5.04 2.7 1.26 2.7 2.76c0 1.28-.87 2.35-2.05 2.67v1.12c0 .4-.32.72-.72.72c-.4 0-.72-.32-.72-.72v-1.12a2.769 2.769 0 0 1-2.05-2.67c0-.4.32-.72.72-.72c.4 0 .72.32.72.72c0 .74.59 1.33 1.32 1.33c.73 0 1.33-.6 1.33-1.33c0-.73-.6-1.33-1.33-1.33h-.07a2.765 2.765 0 0 1-2.69-2.76c0-1.28.87-2.35 2.05-2.67v-1.12c0-.4.32-.72.72-.72c.4 0 .72.32.72.72v1.12c1.18.32 2.05 1.39 2.05 2.67c0 .4-.32.72-.72.72c-.4 0-.72-.32-.72-.72c0-.73-.6-1.33-1.33-1.33c-.73 0-1.33.6-1.33 1.33c0 .73.6 1.33 1.33 1.33"/><path d="m10.532 5.1l2.786 3.26l-.301.336C7.283 9.982 3 15.103 3 21.225c0 5.382 4.368 9.75 9.75 9.75h6.17c5.382 0 9.75-4.367 9.75-9.749c.01-6.123-4.273-11.244-10.007-12.53a1.104 1.104 0 0 0-.11-.615l2.37-2.713l.153-.236a1.956 1.956 0 0 0-2.892-2.423l-.843-1a2.02 2.02 0 0 0-3.008-.005l-.883.986a1.96 1.96 0 0 0-2.918 2.41m3.799 1.385l-1.696-1.96a1.978 1.978 0 0 0 2.365-.5l.8-1.038l.888 1.052a1.97 1.97 0 0 0 2.3.513L17.3 6.485zM5 21.225c0-5.988 4.852-10.84 10.84-10.84c5.988 0 10.84 4.852 10.83 10.838v.002a7.753 7.753 0 0 1-7.75 7.75h-6.17A7.753 7.753 0 0 1 5 21.225"/></g></svg>
+          Earning
+        <% end %>
+      </li>
+      <li class="flex gap-2 items-center rounded text-gray-700 py-3 px-6 hover:bg-[#9c9e83] hover:text-white group/link">
+        <%= link_to admin_notifications_path, class:"flex gap-2" do %>
+          <svg class="group-hover/link:text-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><path fill="currentColor" d="M28.707 19.293L26 16.586V13a10.014 10.014 0 0 0-9-9.95V1h-2v2.05A10.014 10.014 0 0 0 6 13v3.586l-2.707 2.707A1 1 0 0 0 3 20v3a1 1 0 0 0 1 1h7v.777a5.152 5.152 0 0 0 4.5 5.199A5.006 5.006 0 0 0 21 25v-1h7a1 1 0 0 0 1-1v-3a1 1 0 0 0-.293-.707M19 25a3 3 0 0 1-6 0v-1h6Zm8-3H5v-1.586l2.707-2.707A1 1 0 0 0 8 17v-4a8 8 0 0 1 16 0v4a1 1 0 0 0 .293.707L27 20.414Z"/></svg>
+          Notification
+        <% end %>
+      </li>
+      <li class="flex gap-2 items-center rounded text-gray-700 py-3 px-6 hover:bg-[#9c9e83] hover:text-white group/link">
+        <%= link_to admin_emails_path, class:"flex gap-2" do %>
+          <svg class="group-hover/link:text-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><path fill="currentColor" d="M28.707 19.293L26 16.586V13a10.014 10.014 0 0 0-9-9.95V1h-2v2.05A10.014 10.014 0 0 0 6 13v3.586l-2.707 2.707A1 1 0 0 0 3 20v3a1 1 0 0 0 1 1h7v.777a5.152 5.152 0 0 0 4.5 5.199A5.006 5.006 0 0 0 21 25v-1h7a1 1 0 0 0 1-1v-3a1 1 0 0 0-.293-.707M19 25a3 3 0 0 1-6 0v-1h6Zm8-3H5v-1.586l2.707-2.707A1 1 0 0 0 8 17v-4a8 8 0 0 1 16 0v4a1 1 0 0 0 .293.707L27 20.414Z"/></svg>
+          Email
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+  <section class="p-4 border-t border-solid border-gray-100">
+    <div class="flex items-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0ERO4EVHnUraBdQg7Agrq6V_3_Pkl--Bph80QCWyXvg&s" class="rounded-full w-10 h-10 object-cover" alt="">
+      <div class="flex flex-col p-2">
+        <span class="text-xs text-gray-500">Welcome</span>
+        <span class=" pt-1">Admin</span>
+      </div>
+    </div>
+  </section>
+  <footer class="p-4 border-t border-solid border-gray-100">
+    <h4 class="pb-2 text-gray-700 text-sm">© LensFriends 2024</h4>
+    <p class="text-gray-600 text-xs leading-normal"> Connect with photographers and videographers that fit your unique needs like Budget, Location, Date </p>
+  </footer>
+</aside>

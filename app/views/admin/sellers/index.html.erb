@@ -1,0 +1,96 @@
+<div class="md:flex md:gap-2 antialiased bg-gray-100">
+  <%= render partial: "admin/shared/sidebar" %>
+    
+  <main class="bg-gray-100 h-screen w-full overflow-y-auto relative">
+
+    <div class="bg-white sticky top-0 shadow p-4 mb-2">
+      <%= render partial: "admin/shared/header" %>             
+    </div>
+
+    <section class="bg-white rounded shadow">
+      <header class="p-4 text-lg font-medium border-b">
+        <%= search_form_for @q, url: admin_sellers_path do |f| %>
+          <div class="flex flex-col md:flex-row gap-4 justify-between md:items-center">
+            <p>Photographer/Videographer Listing</p>
+            <div class="flex gap-2">
+              <%= f.search_field :email_or_first_name_or_last_name_cont, placeholder: "Search..", class: "flex-1 bg-white text-sm focus:outline-none border border-gray-300 rounded-md py-2 px-3 appearance-none leading-normal focus:border-gray-400", autofocus: true %>
+              <button type="submit" class="font-medium px-4 py-2 text-base bg-[#B7BAA7] hover:bg-[#9c9e83] text-white border border-gray-200 rounded-full">Search</button>
+            </div>
+          </div>
+        <% end %>
+      </header>
+      <section class="py-8">
+        <div class="container px-4 mx-auto">
+          <div class="mb-6 bg-white overflow-x-auto">
+            <table class="table-auto w-full text-nowrap">
+              <thead>
+                <tr class="text-xs text-gray-500 font-medium text-left">
+                  <th class="p-3 pb-6">Photo</th>
+                  <th class="p-3 pb-6">User</th>
+                  <th class="p-3 pb-6">Joined</th>
+                  <th class="p-3 pb-6">Status</th>
+                  <th class="p-3 pb-6">Purchased</th>
+                  <th class="p-3 pb-6">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @sellers.each do |seller| %>
+                  <tr class="text-xs bg-gray-50">
+                    <td class="p-3 font-medium">
+                      <div>
+                        <% if seller.profile_pic.present? %>
+                          <%= image_tag(seller.profile_pic, class: 'w-8 h-8 mr-4 object-cover rounded-md', loading: 'lazy') %>
+                        <% else %>
+                          <img class="w-8 h-8 mr-4 object-cover rounded-md" src="https://images.unsplash.com/photo-1559893088-c0787ebfc084?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80" alt="">
+                        <% end %>
+                      </div>
+                    </td>
+                    <td class="flex p-3">
+                      <div>
+                        <p class="font-medium"><%= seller.first_name.capitalize %> <%= seller.last_name.capitalize %></p>
+                        <p class="text-gray-500"><%= seller.email %></p>
+                      </div>
+                    </td>
+                    <td class="p-3 font-medium"><%= seller.created_at.strftime('%d/%m/%Y') %></td>
+                    <td class="p-3">
+                      <% if seller.subscription_status == "active" %>
+                        <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">Paid</span>
+                      <% else %>
+                        <span class="inline-block py-1 px-2 text-white bg-red-500 rounded-full">Unpaid</span>
+                      <% end %>
+                    </td>
+                    <td class="p-3 font-medium">
+                      <% if seller.plan == "year" %>
+                        <span class="inline-block text-gray-800">Yearly Subscription</span>
+                      <% elsif seller.plan == "month" %>
+                        <span class="inline-block text-gray-800">Monthly Subscription</span>
+                      <% else %>
+                        <span class="inline-block text-gray-800">Not Subscribed</span>
+                      <% end %>
+                    </td>
+                    <td class="p-3">
+                      <%= link_to admin_seller_path(seller),class: "inline-block" do %>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 0 0-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 0 0 0-17.47C428.89 172.28 347.8 112 255.66 112"/><circle cx="256" cy="256" r="80" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+                
+              </tbody>
+            </table>
+          </div>
+
+          <div class="flex flex-col md:flex-row flex-wrap items-center justify-between my-6 mt-8">
+            <div class="w-full lg:w-1/3 flex items-center justify-center lg:justify-normal mb-4 lg:mb-0">
+              <p class="text-xs text-gray-400">Total Sellers <%= @pagy.count %></p>
+            </div>
+            <div class="w-full lg:w-auto flex items-center justify-center">
+            <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+  </main>
+</div>

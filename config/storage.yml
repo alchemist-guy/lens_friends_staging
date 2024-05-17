@@ -1,0 +1,34 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+amazon:
+  service: S3
+  access_key_id: <%= ENV["AWS_ACCESS_KEY"] %>
+  secret_access_key: <%= ENV["AWS_SECRET_KEY"] %>
+  region: us-east-1
+  bucket: lensfriendsapps
+
+# Uncomment the following block if you have valid configurations for Google Cloud Storage (GCS)
+# google:
+#   service: GCS
+#   project: your_project
+#   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
+#   bucket: your_own_bucket-<%= Rails.env %>
+
+# Uncomment the following block if you have valid configurations for Microsoft Azure Storage
+# microsoft:
+#   service: AzureStorage
+#   storage_account_name: your_account_name
+#   storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
+#   container: your_container_name-<%= Rails.env %>
+
+# Uncomment the following block if you want to use a mirror configuration
+# mirror:
+#   service: Mirror
+#   primary: local
+#   mirrors: [ amazon, google, microsoft ]

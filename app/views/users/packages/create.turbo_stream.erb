@@ -1,0 +1,3 @@
+<%= turbo_stream.update "package-errors" do %>
+  <%= render partial: "shared/nested_errors", locals: { error_messages: @package.errors, nested_errors:  @package.errors.full_messages.map { |msg| { attribute: "", message: msg } } } %>
+<% end %>

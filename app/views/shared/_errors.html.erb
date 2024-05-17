@@ -1,0 +1,9 @@
+
+
+<% if error_messages.present? %>
+  <ul class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4">
+    <% error_messages.each do |error| %>
+      <li class="mb-2"><%= "#{error.attribute} - #{error.message}" %></li>
+    <% end %>
+  </ul>
+<% end %>

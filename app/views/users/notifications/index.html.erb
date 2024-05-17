@@ -1,0 +1,222 @@
+<div class="container py-8 pt-18 mx-auto">
+  <header class="px-8 md:px-0 mb-10">
+    <h1 class="text-2xl md:text-3xl mb-2" style="font-family: 'Playfair Display', serif !important;"> Notifications </h1>
+    <p class="text-gray-700 mb-3">View and manage your notifications</p>
+    <a class="group flex flex-wrap text-xs text-neutral-500 hover:text-neutral-600" href="<%= root_path %>">
+      <svg class="mr-3 text-neutral-400 group-hover:text-neutral-500" width="16" height="17" viewbox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.31311 13.5202C6.50838 13.7155 6.82496 13.7155 7.02022 13.5202C7.21548 13.325 7.21548 13.0084 7.02022 12.8131L6.31311 13.5202ZM2 8.49999L1.64645 8.14644C1.55268 8.24021 1.5 8.36739 1.5 8.49999C1.5 8.6326 1.55268 8.75978 1.64645 8.85355L2 8.49999ZM7.02022 4.18688C7.21548 3.99162 7.21548 3.67504 7.02022 3.47977C6.82496 3.28451 6.50838 3.28451 6.31311 3.47977L7.02022 4.18688ZM14 8.99999C14.2761 8.99999 14.5 8.77614 14.5 8.49999C14.5 8.22385 14.2761 7.99999 14 7.99999V8.99999ZM7.02022 12.8131L2.35355 8.14644L1.64645 8.85355L6.31311 13.5202L7.02022 12.8131ZM2.35355 8.85355L7.02022 4.18688L6.31311 3.47977L1.64645 8.14644L2.35355 8.85355ZM2 8.99999L14 8.99999V7.99999L2 7.99999L2 8.99999Z" fill="currentColor"></path>
+      </svg>
+      <span>Back to Home</span>
+    </a>
+  </header>
+          
+  <section class="mt-8">
+    <header class="mb-3">
+      <p class="text-lg text-gray-600 uppercase">Recent UNREAD NOTIFICATIONS</p>
+    </header>
+    <div class=" overflow-y-auto max-h-72">
+      <% if @bulk_unread_notification.present? %>
+        <% @bulk_unread_notification.each do |notification| %>
+
+          <span data-controller="modal-opener">
+
+            <section data-modal-opener-target="open" class="hidden fixed inset-0 z-50 flex flex-wrap items-center justify-center py-8 bg-neutral-500 bg-opacity-80 overflow-y-auto">
+              <div class="container px-4 mx-auto">
+                <div class="max-w-md mx-auto h-72 overflow-hidden bg-white rounded-xl">
+                  <div class="px-4 py-2.5 border-b">
+                    <div class="flex flex-wrap items-center justify-between">
+                      <div class="w-auto">
+                        <h3 class="font-heading text-sm font-semibold">Notification</h3>
+                      </div>
+                      <div class="w-auto" data-action="click->modal-opener#closeModal">
+                        <button class="inline-block text-xs font-medium ">X</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-4 bg-white">
+                    <h3 class="font-heading mb-2 font-semibold"><%= notification.topic %> </h3>
+                    <textarea readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" rows= 6 placeholder="Your message..." required><%= notification.message %></textarea>
+                    </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="p-4 bg-white hover:bg-gray-50 border-b" data-action="click->modal-opener#openModal" data-modal-opener-target="modal">
+              <div class="flex flex-wrap -m-2">
+                <div class="h-7 w-7 m-2 p-1.5 border border-dashed border-gray-300 rounded-full flex justify-center items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#9ca3af" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"></path></svg>
+                </div>
+                <div class="flex-1 p-2">
+                  <h3 class="font-heading mb-2 text-xs font-semibold"><%= notification.topic %></h3>
+                  <p class="text-sm text-neutral-500"><span><%= notification.message.length > 81 ? "#{notification.message[0..80]}..." : notification.message %> </span><a class="text-transparent bg-clip-text bg-gradient-purple-left" href="#">click here.</a></p>
+                </div>
+                <div class="w-auto p-2">
+                  <p class="text-xs text-neutral-400"><%= time_ago_in_words(notification.created_at) %> ago</p>
+                </div>
+              </div>
+            </div>
+
+          </span>
+
+        <% end %>
+      <% end %>
+
+      <% if @unread_notification.present? %>
+        <% @unread_notification.each do |notification| %>
+
+          <span data-controller="modal-opener">
+
+            <section data-modal-opener-target="open" class="hidden fixed inset-0 z-50 flex flex-wrap items-center justify-center py-8 bg-neutral-500 bg-opacity-80 overflow-y-auto">
+              <div class="container px-4 mx-auto">
+                <div class="max-w-md mx-auto h-72 overflow-hidden bg-white rounded-xl">
+                  <div class="px-4 py-2.5 border-b">
+                    <div class="flex flex-wrap items-center justify-between">
+                      <div class="w-auto">
+                        <h3 class="font-heading text-sm font-semibold">Notification</h3>
+                      </div>
+                      <div class="w-auto" data-action="click->modal-opener#closeModal">
+                        <button class="inline-block text-xs font-medium ">X</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-4 bg-white">
+                    <h3 class="font-heading mb-2 font-semibold"><%= notification.topic %> </h3>
+                    <textarea readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" rows= 6 placeholder="Your message..." required><%= notification.message %></textarea>
+                    </div>
+                </div>
+              </div>
+            </section>
+
+            <%= form_with(url: users_notification_marked_read_path(notification), method: :post, id: "notification_#{notification.id}" ) do |form| %>
+              <div class="p-4 bg-white hover:bg-gray-50 border-b" onclick="document.getElementById('notification_<%= notification.id %>').submit();" data-action="click->modal-opener#openModal" data-modal-opener-target="modal">
+                <div class="flex flex-wrap -m-2">
+                  <div class="h-7 w-7 m-2 p-1.5 border border-dashed border-gray-300 rounded-full flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#9ca3af" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"></path></svg>
+                  </div>
+                  <div class="flex-1 p-2">
+                    <h3 class="font-heading mb-2 text-xs font-semibold"><%= notification.topic %></h3>
+                    <p class="text-sm text-neutral-500"><span><%= notification.message.length > 81 ? "#{notification.message[0..80]}..." : notification.message %> </span><a class="text-transparent bg-clip-text bg-gradient-purple-left" href="#">click here.</a></p>
+                  </div>
+                  <div class="w-auto p-2">
+                    <p class="text-xs text-neutral-400"><%= time_ago_in_words(notification.created_at) %> ago</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+          </span>
+
+        <% end %>
+      <% elsif @bulk_unread_notification.blank? && @unread_notification.blank? %>
+        <div class="border border-gray-100 rounded-lg bg-white p-8">
+          <p class="text-lg mb-3">No new notifications</p>
+          <p class="text-gray-500"> You have no unread notifications. </p>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="mt-8">
+    <header class="mb-3">
+      <p class="text-lg text-gray-600 uppercase">READED NOTIFICATIONS</p>
+    </header>
+    <div class="border border-gray-100 rounded-lg overflow-hidden mt-4" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+      <div class="overflow-y-auto max-h-72">
+
+        <% if @bulk_readed_notification.present? %>
+          <% @bulk_readed_notification.each do |notification| %>
+            <span data-controller="modal-opener">
+
+              <section data-modal-opener-target="open" class="hidden fixed inset-0 z-50 flex flex-wrap items-center justify-center py-8 bg-neutral-500 bg-opacity-80 overflow-y-auto">
+                <div class="container px-4 mx-auto">
+                  <div class="max-w-md mx-auto h-72 overflow-hidden bg-white rounded-xl">
+                    <div class="px-4 py-2.5 border-b">
+                      <div class="flex flex-wrap items-center justify-between">
+                        <div class="w-auto">
+                          <h3 class="font-heading text-sm font-semibold">Notification</h3>
+                        </div>
+                        <div class="w-auto" data-action="click->modal-opener#closeModal">
+                          <button class="inline-block text-xs font-medium ">X</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                      <h3 class="font-heading mb-2 font-semibold"><%= notification.topic %> </h3>
+                      <textarea readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" rows= 6 placeholder="Your message..." required><%= notification.message %></textarea>
+                      </div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="p-4 bg-white hover:bg-gray-50 border-b" data-action="click->modal-opener#openModal" data-modal-opener-target="modal">
+                <div class="flex flex-wrap -m-2">
+                  <div class="h-7 w-7 m-2 p-1.5 border border-dashed border-gray-300 rounded-full flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#9ca3af" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"></path></svg>
+                  </div>
+                  <div class="flex-1 p-2">
+                    <h3 class="font-heading mb-2 text-xs font-semibold"><%= notification.topic %></h3>
+                    <p class="text-sm text-neutral-500"><span><%= notification.message.length > 81 ? "#{notification.message[0..80]}..." : notification.message %> </span><a class="text-transparent bg-clip-text bg-gradient-purple-left" href="#">click here.</a></p>
+                  </div>
+                  <div class="w-auto p-2">
+                    <p class="text-xs text-neutral-400"><%= time_ago_in_words(notification.created_at) %> ago</p>
+                  </div>
+                </div>
+              </div>
+
+            </span>
+          <% end %>
+        <% end %>
+
+        <% if @readed_notification.present? %>
+          <% @readed_notification.each do |notification| %>
+            <span data-controller="modal-opener">
+
+              <section data-modal-opener-target="open" class="hidden fixed inset-0 z-50 flex flex-wrap items-center justify-center py-8 bg-neutral-500 bg-opacity-80 overflow-y-auto">
+                <div class="container px-4 mx-auto">
+                  <div class="max-w-md mx-auto h-72 overflow-hidden bg-white rounded-xl">
+                    <div class="px-4 py-2.5 border-b">
+                      <div class="flex flex-wrap items-center justify-between">
+                        <div class="w-auto">
+                          <h3 class="font-heading text-sm font-semibold">Notification</h3>
+                        </div>
+                        <div class="w-auto" data-action="click->modal-opener#closeModal">
+                          <button class="inline-block text-xs font-medium ">X</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                      <h3 class="font-heading mb-2 font-semibold"><%= notification.topic %> </h3>
+                      <textarea readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" rows= 6 placeholder="Your message..." required><%= notification.message %></textarea>
+                      </div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="p-4 bg-white hover:bg-gray-50 border-b" data-action="click->modal-opener#openModal" data-modal-opener-target="modal">
+                <div class="flex flex-wrap -m-2">
+                  <div class="h-7 w-7 m-2 p-1.5 border border-dashed border-gray-300 rounded-full flex justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="#9ca3af" d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19M12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4"></path></svg>
+                  </div>
+                  <div class="flex-1 p-2">
+                    <h3 class="font-heading mb-2 text-xs font-semibold"><%= notification.topic %></h3>
+                    <p class="text-sm text-neutral-500"><span><%= notification.message.length > 81 ? "#{notification.message[0..80]}..." : notification.message %> </span><a class="text-transparent bg-clip-text bg-gradient-purple-left" href="#">click here.</a></p>
+                  </div>
+                  <div class="w-auto p-2">
+                    <p class="text-xs text-neutral-400"><%= time_ago_in_words(notification.created_at) %> ago</p>
+                  </div>
+                </div>
+              </div>
+
+            </span>
+          <% end %>
+        <% elsif @bulk_readed_notification.blank? && @readed_notification.blank? %>
+          <div class="border border-gray-100 rounded-lg bg-white p-8">
+            <p class="text-lg mb-3">No readed notifications</p>
+            <p class="text-gray-500"> You have no readed notifications. </p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,44 @@
+
+<%#= render "admin_auth/shared/links" %>
+
+
+<div class="flex flex-wrap items-center min-h-screen px-4">
+  <div class="w-full lg:w-1/2">
+    <div class="flex flex-col justify-center py-24 lg:max-w-lg mx-auto h-full">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <h1 class="text-3xl font-bold font-heading mb-4">Login</h1>
+        <a class="inline-block text-gray-500 hover: transition duration-200 mb-8" href="#">
+          <span>Login your LensFriend account?</span>
+          <span></span>
+          <span class="font-bold font-heading">as Admin</span>
+        </a>
+        <label class="block text-sm font-medium mb-2" for="textInput1">Email</label>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-full p-4 outline-none border border-gray-100 shadow placeholder-gray-500 focus:ring focus:ring-orange-200 transition duration-200 mb-4", placeholder: "john@email.com" %>
+
+        <label class="block text-sm font-medium mb-2" for="textInput2">Password</label>
+        <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-full p-4 outline-none border border-gray-100 shadow placeholder-gray-500 focus:ring focus:ring-orange-200 transition duration-200 mb-4", type: "password", placeholder: "Enter password" %>
+        
+        <button type="submit" class="group relative block w-full font-bold px-11 py-4 text-base border border-gray-200 hover:border-gray-300 overflow-hidden rounded-full mt-4">
+          <div class="absolute top-0 left-0 transform -translate-y-0 group-hover:-translate-y-full h-full w-full bg-[#B7BAA7] transition ease-in-out duration-500"></div>
+          <p class="relative z-10 text-white group-hover:text-black">Login</p>
+        </button>
+      <% end%>
+    </div>
+  </div>
+  <div class="w-full lg:w-1/2">
+    <div class="grid grid-cols-2 gap-3 lg:max-w-md mx-auto">
+      <div class="rounded-3xl shadow-xl">
+        <%= image_tag('1.jpg', class: 'rounded-tl-3xl object-cover h-52 md:h-72 w-full') %>
+      </div>
+      <div class="rounded-3xl shadow-xl">
+        <%= image_tag('3.jpg', class: 'rounded-tr-3xl object-cover h-52 md:h-72 w-full') %>
+      </div>
+      <div class="rounded-3xl shadow-xl">
+        <%= image_tag('4.jpg', class: 'rounded-bl-3xl object-cover h-52 md:h-72 w-full') %>
+      </div>
+      <div class="rounded-3xl shadow-xl">
+        <%= image_tag('2.jpg', class: 'rounded-br-3xl object-cover h-52 md:h-72 w-full') %>
+      </div>
+    </div>
+  </div>
+</div>

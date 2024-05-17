@@ -1,0 +1,97 @@
+
+<div class="flex">
+
+  <main class="w-full max-h-screen overflow-auto">
+
+
+    <div class="mt-10 mb-4  pl-10 lg:mx-8">
+        <%= link_to users_profiles_path, class:"mb-4" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 12" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0.5 6C0.5 5.72386 0.723858 5.5 1 5.5H11C11.2761 5.5 11.5 5.72386 11.5 6C11.5 6.27614 11.2761 6.5 11 6.5H1C0.723858 6.5 0.5 6.27614 0.5 6Z"
+              fill="black"></path>
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M6.35355 11.3536C6.15829 11.5488 5.84171 11.5488 5.64645 11.3536L0.646448 6.35355C0.451186 6.15829 0.451186 5.84171 0.646448 5.64645L5.64645 0.646448C5.84171 0.451186 6.15829 0.451186 6.35355 0.646448C6.54882 0.84171 6.54882 1.15829 6.35355 1.35355L1.70711 6L6.35355 10.6464C6.54882 10.8417 6.54882 11.1583 6.35355 11.3536Z"
+              fill="black"></path>
+          </svg>
+        <% end %>
+    </div>
+
+    <div class="p-4">
+      <h2 class="text-2xl font-semibold mb-4 pl-10 lg:mx-4">Select the dates you are unavailable to customers.</h2>
+      <% off_day = OffDay.new %>
+      <%= form_with(model: off_day, url: users_off_days_path, class: "contents") do |form| %>
+        <div class="flex justify-center gap-x-2 md:gap-x-4 items-center py-8">
+          <div class="relative w-5/12">
+            <%= form.date_field :start_date, required: true, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", placeholder: "Start Date", min: Date.current %>
+            <label for="one" class="transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Starting date</label>
+          </div>
+          <div class="relative w-5/12">
+            <%= form.date_field :end_date, required: true, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", placeholder: "End Date", min: Date.current %>
+            <label for="two" class="transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Ending date</label>
+          </div>
+          <div>
+            <button type="submit" class="focus:outline-none focus:shadow-outline border-none py-3 px-3 appearance-none leading-normal rounded-full bg-[#9c9e83] text-white uppercase text-xs tracking-widest md:mx-2">Submit</button>
+          </div>
+        </div>
+      <% end %>
+      <div class="flex flex-col lg:flex-row">
+        <div class="lg:w-6/12 order-1 lg:order-0">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Date (From)
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Date (To)
+                </th>
+                <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200 ">
+              <% current_user.off_days.each do |off_day| %>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= off_day.start_date.strftime("%B %d, %Y") %>
+                  </td>       
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <%= off_day.end_date.strftime("%B %d, %Y") %>
+                  </td>
+                  
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex justify-end gap-2">
+                    <%= button_to users_off_day_path(off_day), method: :delete, class: 'hover:text-red-900 cursor-pointer', data: { confirm: 'Are you sure?', commit: 'Delete' } do %>
+                      <svg class="text-red-500 hover:text-red-900 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><g fill="currentColor"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/><path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/></g></svg>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              
+            </tbody>
+          </table>
+        </div>
+
+
+        <div class="lg:w-6/12 order-0 lg:order-1">
+          <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+              <div class="-mx-1 -mb-1">
+                <%= month_calendar(events: @off_days ) do |date, off_days| %>
+                    <%= date.day %>
+                    <% off_days.each do |off_day| %>
+                        <div class="text-xs">
+                        </div>
+                    <% end %>
+                  <% end %>
+              </div>
+            </div>              
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </main>
+</div>

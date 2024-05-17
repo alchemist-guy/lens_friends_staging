@@ -1,0 +1,169 @@
+<div class="md:flex md:gap-2 antialiased bg-gray-100">
+  <main class="bg-gray-100 h-screen w-full relative">
+    <section class="bg-white rounded shadow">
+      <header class="flex flex-col md:flex-row gap-3 justify-between md:items-center p-4 border-b border-gray-100">
+        <h3 class="text-lg font-medium">Profile Details</h3>
+      </header>
+      <div class="p-4">
+        <div class="md:flex gap-4 mt-4">
+          <section class="w-full md:w-6/12 shadow">
+
+
+
+            <div class="w-full h-60">
+              <% if current_user.cover_pic.attached? %>
+                <%= image_tag(current_user.cover_pic, class: "w-full h-full rounded-tl-lg rounded-tr-lg object-contain object-center") %>
+              <% else %>
+                <%= image_tag('banner.PNG', class: 'w-full h-full rounded-tl-lg rounded-tr-lg object-contain object-center') %>
+              <% end %>
+            </div>
+
+            <div class="flex flex-col items-center -mt-20">
+              <% if current_user.profile_pic.attached? %>
+                <%= image_tag(current_user.profile_pic, class: "w-40 h-40 object-cover border-4 border-white rounded-full") %>
+              <% else %>
+                <%= image_tag('profile.PNG', class: 'w-40 h-40 object-cover border-4 border-white rounded-full') %>
+              <% end %>
+              <div class="flex items-center space-x-2 mt-2">
+                <p class="text-2xl"><%= current_user.first_name.titleize %> <%= current_user.last_name.titleize %></p>
+                <span class="bg-[#9c9e83] rounded-full p-1" title="Verified">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-100 h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path> </svg>
+                </span>
+              </div>
+              <% if current_user.business_name.present? %>
+                <p class="text-gray-700"><%= current_user.business_name %></p>
+              <% else %>
+                <p class="text-gray-700">Add Your Business Name</p>
+              <% end %>
+
+              <% if current_user.bio.present? %>
+                <p class="text-sm text-gray-500"><%= truncate(current_user.bio, length: 50) %></p>
+              <% else %>
+                <p class="text-sm text-gray-500">Introduce yourself and your business to Clients</p>
+              <% end %>
+              <div class="w-full max-w-xs px-4 mt-4 mx-8">
+                <div class="w-full bg-gray-100 rounded-full">
+                  <%= render partial: "users/shared/mini_track_profile", locals:{progress_bar_count: @progress_bar_count, progress_bar: @progress_bar} %>
+                </div>
+              </div>
+              <div class="mt-4 mb-3">
+                <%= link_to edit_users_profiles_path, class:"inline-block focus:outline-none focus:border-none border-none py-2 px-4 appearance-none leading-normal rounded-full bg-[#9c9e83] hover:bg-[#B6B8A5] text-white text-center" do %>Edit Profile<% end %>
+              </div>
+            </div>
+          </section>
+
+
+
+          <section class="w-full md:w-6/12 flex flex-col">
+
+            <%= render partial: "users/shared/track_profile", locals:{progress_bar_count: @progress_bar_count, progress_bar: @progress_bar} %>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 flex-1">
+              <%= link_to users_calendars_path(), class:"flex flex-col gap-2 justify-center items-center p-4 hover:bg-[#B7BAA7] hover:text-white group/btn shadow cursor-pointer" do %>
+                <div class="p-2 rounded-full h-10 w-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V5h3.385V2.77h1.077V5h7.153V2.77h1V5H20v6.615h-1v-1H5V20h6.846v1zm10.23 0v-2.21l5.96-5.934l2.19 2.204L16.44 21zm5.96-4.985l.925-.955l-.925-.945l-.95.95z"/></svg>
+                </div>
+                <p class="text-gray-700 font-semibold uppercase text-sm text-center group-hover/btn:text-white">Edit Calender</p>
+              <% end %>
+              <%= link_to edit_users_session_type_path(current_user), class:"flex flex-col gap-2 justify-center items-center p-4 hover:bg-[#B7BAA7] hover:text-white group/btn shadow cursor-pointer" do %>
+                <div class="p-2 rounded-full h-10 w-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 9q-1.425 0-2.475-.85T15.125 6H8.85q-.275 1.05-1.037 1.813T6 8.85v6.275q1.3.35 2.15 1.4T9 19q0 1.65-1.175 2.825T5 23q-1.65 0-2.825-1.175T1 19q0-1.425.85-2.475t2.15-1.4V8.85q-1.3-.35-2.15-1.4T1 5q0-1.65 1.175-2.825T5 1q1.4 0 2.45.85T8.85 4h6.275q.35-1.3 1.4-2.15T19 1q1.65 0 2.825 1.175T23 5q0 1.65-1.175 2.825T19 9M5 21q.825 0 1.413-.6T7 19q0-.825-.587-1.412T5 17q-.8 0-1.4.588T3 19q0 .8.6 1.4T5 21M5 7q.825 0 1.413-.587T7 5q0-.825-.587-1.412T5 3q-.8 0-1.4.588T3 5q0 .825.6 1.413T5 7m14 16q-1.65 0-2.825-1.175T15 19q0-1.65 1.175-2.825T19 15q1.65 0 2.825 1.175T23 19q0 1.65-1.175 2.825T19 23m0-2q.825 0 1.413-.6T21 19q0-.825-.587-1.412T19 17q-.825 0-1.412.588T17 19q0 .8.588 1.4T19 21m0-14q.825 0 1.413-.587T21 5q0-.825-.587-1.412T19 3q-.825 0-1.412.588T17 5q0 .825.588 1.413T19 7m0-2"/></svg>
+                </div>
+                <p class="text-gray-700 font-semibold uppercase text-sm text-center group-hover/btn:text-white">Edit Sessions</p>
+              <% end %>
+              <%= link_to users_packages_path, class:"flex flex-col gap-2 justify-center items-center p-4 hover:bg-[#B7BAA7] hover:text-white group/btn shadow cursor-pointer" do %>
+                <div class="p-2 rounded-full h-10 w-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M403.29 32H280.36a14.46 14.46 0 0 0-10.2 4.2L24.4 281.9a28.85 28.85 0 0 0 0 40.7l117 117a28.86 28.86 0 0 0 40.71 0L427.8 194a14.46 14.46 0 0 0 4.2-10.2v-123A28.66 28.66 0 0 0 403.29 32"/><path fill="currentColor" d="M352 144a32 32 0 1 1 32-32a32 32 0 0 1-32 32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="m230 480l262-262a13.81 13.81 0 0 0 4-10V80"/></svg>
+                </div>
+                <p class="text-gray-700 font-semibold uppercase text-sm text-center group-hover/btn:text-white">Price Packages</p>
+              <% end %>
+              <%= link_to users_gallery_index_path(), class:"flex flex-col gap-2 justify-center items-center p-4 hover:bg-[#B7BAA7] hover:text-white group/btn shadow cursor-pointer" do %>
+                <div class="p-2 rounded-full h-10 w-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M18.449 1.988a2.52 2.52 0 1 1 3.563 3.563L17.76 9.803l-.03.03c-.23.23-.391.392-.572.532a3.701 3.701 0 0 1-.683.423c-.206.098-.422.17-.732.273a4.803 4.803 0 0 1-.04.014l-1.838.612a1.227 1.227 0 0 1-1.552-1.552l.612-1.838a5.33 5.33 0 0 1 .014-.04c.103-.31.175-.526.273-.732c.116-.242.258-.472.423-.684c.14-.18.301-.34.532-.571l.03-.03zm2.502 1.06a1.02 1.02 0 0 0-1.442 0l-.131.132l.016.05c.082.236.238.548.533.843a2.224 2.224 0 0 0 .893.55l.131-.132a1.02 1.02 0 0 0 0-1.442m-1.265 2.708a3.754 3.754 0 0 1-1.442-1.442L15.258 7.3c-.272.273-.364.366-.44.464a2.195 2.195 0 0 0-.252.406c-.053.113-.096.236-.218.602l-.225.675l.43.43l.675-.226c.366-.121.489-.164.602-.217a2.2 2.2 0 0 0 .406-.252c.098-.076.191-.168.464-.44z"/><path d="M12 1.25h-.057c-2.309 0-4.118 0-5.53.19c-1.444.194-2.584.6-3.479 1.494c-.895.895-1.3 2.035-1.494 3.48c-.19 1.411-.19 3.22-.19 5.529v.114c0 2.309 0 4.118.19 5.53c.194 1.444.6 2.584 1.494 3.479c.895.895 2.035 1.3 3.48 1.494c1.411.19 3.22.19 5.529.19h.114c2.309 0 4.118 0 5.53-.19c1.444-.194 2.584-.6 3.479-1.494c.895-.895 1.3-2.035 1.494-3.48c.19-1.411.19-3.22.19-5.529V12a.75.75 0 0 0-1.5 0c0 2.378-.002 4.086-.176 5.386l-.022.152l-2.774-2.497a3.75 3.75 0 0 0-4.665-.28l-.298.21a1.25 1.25 0 0 1-1.602-.14l-4.29-4.29a3.05 3.05 0 0 0-4.165-.138l-.507.443c.005-1.792.03-3.153.175-4.232c.172-1.279.5-2.05 1.069-2.62c.57-.569 1.34-.896 2.619-1.068c1.3-.174 3.008-.176 5.386-.176a.75.75 0 0 0 0-1.5M2.926 17.386c.172 1.279.5 2.05 1.069 2.62c.57.569 1.34.896 2.619 1.068c1.3.174 3.008.176 5.386.176s4.086-.002 5.386-.176c1.279-.172 2.05-.5 2.62-1.069a3.04 3.04 0 0 0 .604-.865a.755.755 0 0 1-.112-.083l-3.223-2.9a2.25 2.25 0 0 0-2.8-.17l-.297.21a2.75 2.75 0 0 1-3.526-.305l-4.29-4.29a1.55 1.55 0 0 0-2.117-.07L2.75 12.84c.003 1.948.023 3.405.176 4.546"/></g></svg>
+                </div>
+                <p class="text-gray-700 font-semibold uppercase text-sm text-center group-hover/btn:text-white">Edit Gallery</p>
+              <% end %>
+              <%= link_to users_subscriptions_path, class:"flex flex-col gap-2 justify-center items-center p-4 hover:bg-[#B7BAA7] hover:text-white group/btn shadow cursor-pointer" do %>
+                <div class="p-2 rounded-full h-10 w-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20 8h-3V6c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v10h20V10c0-1.1-.9-2-2-2M9 6h6v2H9zm11 12H4v-3h2v1h2v-1h8v1h2v-1h2zm-2-5v-1h-2v1H8v-1H6v1H4v-3h16v3z"/></svg>
+                </div>
+                <p class="text-gray-700 font-semibold uppercase text-sm text-center group-hover/btn:text-white">Subscription Details</p>
+              <% end %>
+              <%= link_to  users_settings_path, class:"flex flex-col gap-2 justify-center items-center p-4 hover:bg-[#B7BAA7] hover:text-white group/btn shadow cursor-pointer" do %>
+                <div class="p-2 rounded-full h-10 w-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="4"><path d="M18.284 43.171a19.995 19.995 0 0 1-8.696-5.304a6 6 0 0 0-5.182-9.838A20.09 20.09 0 0 1 4 24c0-2.09.32-4.106.916-6H5a6 6 0 0 0 5.385-8.65a19.968 19.968 0 0 1 8.267-4.627A6 6 0 0 0 24 8a6 6 0 0 0 5.348-3.277a19.968 19.968 0 0 1 8.267 4.627A6 6 0 0 0 43.084 18A19.99 19.99 0 0 1 44 24c0 1.38-.14 2.728-.406 4.03a6 6 0 0 0-5.182 9.838a19.995 19.995 0 0 1-8.696 5.303a6.003 6.003 0 0 0-11.432 0Z"/><path d="M24 31a7 7 0 1 0 0-14a7 7 0 0 0 0 14Z"/></g></svg>
+                </div>
+                <p class="text-gray-700 font-semibold uppercase text-sm text-center group-hover/btn:text-white">Account Settings</p>
+              <% end %>
+            </div>
+          </section>
+
+
+
+
+        </div>
+        <section class="mt-8">
+          <header class="mb-3">
+            <p class="text-lg text-gray-600 uppercase">Portfolio</p>
+          </header>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <% if current_user.session_type.present? %>
+              <% current_user.session_type.attributes.each do |field, value| %>
+                <% if value == true && [true, false].include?(value) %>
+                  <% gallery = current_user.session_type.galleries.where(gallery_type: "#{field}") %>
+                  <% if gallery.present? %>
+                    <div class="border border-gray-100 rounded-lg bg-white p-8">
+                      <div class="flex justify-between">
+                        <div>
+                          <h2 class="text-lg"> <%= field.to_s.capitalize %> </h2>
+                        </div>
+                      </div>
+                      <div class="flex flex-nowrap gap-2 justify-center overflow-hidden mt-8 h-16">
+                        <% gallery.first.images.each do |image| %>
+                          <%= image_tag image, class: "h-16 min-w-16 object-cover", loading: "lazy", alt: "Gallery Image" %>
+                        <% end %>
+                      </div>
+                      <div class="flex justify-center mt-6">
+                        <%= link_to users_gallery_path(gallery.first), class:"py-2 px-6 font-semibold rounded-full bg-[#9c9e83] hover:bg-[#d6dacc] text-white text-xs transition ease-in-out duration-200" do %>Show more<% end %>
+                      </div>
+                    </div>
+                  <% else %>
+                  <div class="border border-gray-100 rounded-lg bg-white h-[266px] flex flex-col items-center justify-center p-8">
+                    <h2 class="text-lg mb-2"> <%= field.to_s.capitalize %></h2>
+                    <p class="text-gray-700">This gallery is empty <a href="<%= new_users_gallery_path(gallery_type: field) %>" class="underline">Create gallery</a></p>
+                  </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </section>
+        <section>
+          <div class="my-4">
+            <p class="text-2xl">Pricing Packages</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg flex flex-col justify-center items-center gap-3 text-center p-8">
+            <p class="text-sm text-gray-500 text-center">Any pricing packages that you add to your profile will appear here.</p>
+            <div class="mt-2">
+              <button class="focus:outline-none focus:shadow-outline border border-gray-300 px-4 py-2 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#9c9e83] hover:bg-[#d6dacc] text-white text-sm transition duration-100">Add pricing packages</button>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="my-4">
+            <p class="text-2xl">Reviews</p>
+          </div>
+          <div class="border border-gray-100 rounded-lg flex flex-col justify-center items-center gap-3 text-center p-8">
+            <p class="text-sm text-gray-500 text-center">You currently have no reviews. Latest reviews from clients and other photographers will appear here.</p>
+            <div class="mt-2">
+              <button class="focus:outline-none focus:shadow-outline border border-gray-300 px-4 py-2 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#9c9e83] hover:bg-[#d6dacc] text-white text-sm transition duration-100">Invite others to review</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</div>
+
+
+

@@ -1,0 +1,220 @@
+<a class="mt-4 left-2 sm:left-4 top-8 md:left-8 p-4 group flex flex-wrap text-xs text-neutral-500 hover:text-neutral-600" href="<%= users_profiles_path %>">
+  <svg class="mr-3 text-neutral-400 group-hover:text-neutral-500" width="16" height="17" viewbox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.31311 13.5202C6.50838 13.7155 6.82496 13.7155 7.02022 13.5202C7.21548 13.325 7.21548 13.0084 7.02022 12.8131L6.31311 13.5202ZM2 8.49999L1.64645 8.14644C1.55268 8.24021 1.5 8.36739 1.5 8.49999C1.5 8.6326 1.55268 8.75978 1.64645 8.85355L2 8.49999ZM7.02022 4.18688C7.21548 3.99162 7.21548 3.67504 7.02022 3.47977C6.82496 3.28451 6.50838 3.28451 6.31311 3.47977L7.02022 4.18688ZM14 8.99999C14.2761 8.99999 14.5 8.77614 14.5 8.49999C14.5 8.22385 14.2761 7.99999 14 7.99999V8.99999ZM7.02022 12.8131L2.35355 8.14644L1.64645 8.85355L6.31311 13.5202L7.02022 12.8131ZM2.35355 8.85355L7.02022 4.18688L6.31311 3.47977L1.64645 8.14644L2.35355 8.85355ZM2 8.99999L14 8.99999V7.99999L2 7.99999L2 8.99999Z" fill="currentColor"></path>
+  </svg>
+  <span>Back to Dashboard</span>
+</a>
+
+<section class="py-24 bg-gray-100">
+  <div class="container px-4 mx-auto">
+    <div class="max-w-xl text-center mx-auto mb-24">
+      <h1 class="text-2xl md:text-4xl lg:text-5xl text-center !leading-tight uppercase mb-5" style="font-family: 'Playfair Display', serif !important;"> Your Selected Plan </h1>
+      <p class="mb-10 text-gray-600">Manage your plan according to your specific requirements.</p>
+    </div>
+    <div class="md:mx-24 lg:mx-72 mx-auto">
+      <div class="mx-auto md:mx-24">
+        <div class="p-10 bg-white rounded-lg transform hover:-translate-y-2 transition duration-500">
+          <div class="text-center">
+            <h4 class="mb-8 text-xl font-semibold tracking-tight uppercase"><%= current_user.plan %>ly Plan</h4>
+            <h3>
+              <span class="text-xl font-semibold tracking-tight">$</span>
+              <span class="text-6xl md:text-7xl tracking-tighter"><%= current_user.plan == "year" ? "50" : "5"%></span>
+            <span class="inline-block mb-7 tracking-tight">/<%= current_user.plan == "year" ? "y" : "m"%></span>
+            </h3>
+            <div class="py-8 border-t border-b border-gray-300 border-opacity-60 min-h-[114px]">
+              <p class="tracking-tight max-w-xs mx-auto"><%= current_user.plan %>ly</p>
+            </div>
+            <ul class="py-8">
+              <li class="flex flex-wrap items-center mb-2.5">
+                <svg class="mr-4" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z" fill="#14B082"></path>
+                </svg>
+                <span class="font-medium">Photographer profile</span>
+              </li>
+              <li class="flex flex-wrap items-center mb-2.5">
+                <svg class="mr-4" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z" fill="#14B082"></path>
+                </svg>
+                <span class="mr-2 font-medium">Email Notification</span>
+              </li>
+              <li class="flex flex-wrap items-center mb-2.5">
+                <svg class="mr-4" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z" fill="#14B082"></path>
+                </svg>
+                <span class="font-medium">Job board</span>
+              </li>
+              <li class="flex flex-wrap items-center mb-2.5">
+                <svg class="mr-4" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z" fill="#14B082"></path>
+                </svg>
+                <span class="font-medium">SMS Notification</span>
+              </li>
+              <li class="flex flex-wrap items-center">
+                <svg class="mr-4" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z" fill="#14B082"></path>
+                </svg>
+                <span class="font-medium">Limited Support</span>
+              </li>
+            </ul>
+          </div>
+          <div class="flex justify-center">
+            <%= button_to users_billing_portal_index_path, method: :post, data: { turbo: "false" }, class: "group relative font-bold px-11 py-2.5 text-base border border-gray-200 hover:border-gray-300 overflow-hidden rounded-full" do %>
+              <div class="absolute top-0 left-0 transform -translate-y-0 group-hover:-translate-y-full h-full w-full bg-[#B7BAA7] transition ease-in-out duration-500"></div>
+              <p class="relative z-10 text-white group-hover:text-black">Manage Plan</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="text-gray-600 mt-6"><span class="text-red-500">*</span> You can cancel your subscription at any time.</p>
+  <p class="text-gray-600 mt-2"><span class="text-red-500">*</span> Payment will be charged to your Debit/Credit Card at confirmation of purchase. Subscription automatically renews unless auto-renewal is turned off at least 24 hours before the end of the current period. Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal. Subscriptions may be managed by the user in the user’s Account Settings after purchase. Any unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to the publication, where applicable. <a href="" class="underline">Terms & Privacy Policy</a></p>
+</section>
+
+<section class="py-24">
+  <div class="container mx-auto px-4">
+    <h1 class="text-2xl md:text-4xl lg:text-5xl text-center !leading-tight uppercase mb-5" style="font-family: 'Playfair Display', serif !important;"> Happy Clients </h1>
+    <p class="mb-16 text-base max-w-md mx-auto text-center text-gray-700">Discover what our Clients says</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 -m-5">
+      <div class="h-full p-0.5 transform hover:-translate-y-3 rounded-10 transition ease-out duration-1000 rounded-lg"  style="background-image: linear-gradient(90deg,#DFC9BA 0,#B7BAA7 50%,#9c9e83 100%);">
+        <div class="h-full px-7 py-8 bg-white rounded-lg">
+          <img class="h-8 w-8 md:h-16 md:w-16 object-cover rounded-full mb-8" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+          <p class="mb-8 text-lg text-gray-900">&ldquo;You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the change.&rdquo;</p>
+          <h3 class="mb-1.5 font-bold text-lg text-gray-900">Darrell Steward</h3>
+          <p class="text-sm text-gray-600">Product Designer</p>
+        </div>
+      </div>
+      <div class="h-full p-0.5 transform hover:-translate-y-3 rounded-10 shadow-xl transition ease-out duration-1000 rounded-lg" style="background-image: linear-gradient(90deg,#DFC9BA 0,#B7BAA7 50%,#9c9e83 100%);">
+        <div class="h-full px-7 py-8 bg-white rounded-lg">
+          <img class="h-8 w-8 md:h-16 md:w-16 object-cover rounded-full mb-8" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+          <p class="mb-8 text-lg text-gray-900">&ldquo;Simply the best. Better than all the rest. I&rsquo;d recommend this product to beginners and advanced users.&rdquo;</p>
+          <h3 class="mb-1.5 font-bold text-lg text-gray-900">Ronald Richards</h3>
+          <p class="text-sm text-gray-600">Software Engineer</p>
+        </div>
+      </div>
+      <div class="h-full p-0.5 transform hover:-translate-y-3 rounded-10 transition ease-out duration-1000 rounded-lg" style="background-image: linear-gradient(90deg,#DFC9BA 0,#B7BAA7 50%,#9c9e83 100%);">
+        <div class="h-full px-7 py-8 bg-white rounded-lg">
+          <img class="h-8 w-8 md:h-16 md:w-16 object-cover rounded-full mb-8" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+          <p class="mb-8 text-lg text-gray-900">&ldquo;I cannot believe that I have got a brand new landing page after getting Omega. It was super easy to edit and publish.&rdquo;</p>
+          <h3 class="mb-1.5 font-bold text-lg text-gray-900">Darrell Steward</h3>
+          <p class="text-sm text-gray-600">Product Designer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 bg-gray-100">
+  <div class="relative container px-4 mx-auto">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <h1 class="text-2xl md:text-4xl lg:text-5xl text-center !leading-tight uppercase mb-5" style="font-family: 'Playfair Display', serif !important;"> FREQUENTLY ASK QUESTION </h1>
+      </div>
+      <div class="pt-16 md:pt-24 px-8 sm:px-20 md:pb-24 pb-16 bg-white rounded-4xl shadow-lg">
+        <button class="flex mb-8 pb-8 group w-full items-start justify-between border-b border-gray-100 text-left">
+          <div class="max-w-xl pr-5">
+            <h3 class="text-xl font-semibold mb-3">Do you provide a complete design style?</h3>
+            <p class="text-lg text-gray-500">Pretium ac auctor quis urna orci feugiat. Vulputate tellus velit tellus orci auctor vel nulla facilisi ut. Ante nunc risus viverra vivamus. Eros amet at lectus ac ac nibh dignissim.</p>
+          </div>
+          <div class="pt-1">
+            <span>
+              <svg width="17" height="3" viewbox="0 0 17 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 0.045166H1.46194C1.19673 0.045166 0.942374 0.150523 0.754838 0.338059C0.567302 0.525596 0.461945 0.77995 0.461945 1.04517C0.461945 1.31038 0.567302 1.56474 0.754838 1.75227C0.942374 1.93981 1.19673 2.04517 1.46194 2.04517H15.4619C15.7272 2.04517 15.9815 1.93981 16.1691 1.75227C16.3566 1.56474 16.4619 1.31038 16.4619 1.04517C16.4619 0.77995 16.3566 0.525596 16.1691 0.338059C15.9815 0.150523 15.7272 0.045166 15.4619 0.045166Z" fill="#FF460C"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+        <button class="flex mb-8 pb-8 group w-full items-start justify-between border-b border-gray-100 text-left">
+          <div class="max-w-xl pr-5">
+            <h3 class="text-xl font-semibold text-black">Do you provide a complete design style?</h3>
+            <p class="hidden group-hover:block mt-3 text-lg text-gray-500">Pretium ac auctor quis urna orci feugiat. Vulputate tellus velit tellus orci auctor vel nulla facilisi ut. Ante nunc risus viverra vivamus. Eros amet at lectus ac ac nibh dignissim.</p>
+          </div>
+          <div class="pt-1">
+            <span class="hidden group-hover:block">
+              <svg width="17" height="3" viewbox="0 0 17 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 0.045166H1.46194C1.19673 0.045166 0.942374 0.150523 0.754838 0.338059C0.567302 0.525596 0.461945 0.77995 0.461945 1.04517C0.461945 1.31038 0.567302 1.56474 0.754838 1.75227C0.942374 1.93981 1.19673 2.04517 1.46194 2.04517H15.4619C15.7272 2.04517 15.9815 1.93981 16.1691 1.75227C16.3566 1.56474 16.4619 1.31038 16.4619 1.04517C16.4619 0.77995 16.3566 0.525596 16.1691 0.338059C15.9815 0.150523 15.7272 0.045166 15.4619 0.045166Z" fill="#FF460C"></path>
+              </svg>
+            </span>
+            <span class="block group-hover:hidden">
+              <svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 7H9.46194V1C9.46194 0.734784 9.35659 0.48043 9.16905 0.292893C8.98151 0.105357 8.72716 0 8.46194 0C8.19673 0 7.94237 0.105357 7.75484 0.292893C7.5673 0.48043 7.46194 0.734784 7.46194 1V7H1.46194C1.19673 7 0.942374 7.10536 0.754838 7.29289C0.567302 7.48043 0.461945 7.73478 0.461945 8C0.461945 8.26522 0.567302 8.51957 0.754838 8.70711C0.942374 8.89464 1.19673 9 1.46194 9H7.46194V15C7.46194 15.2652 7.5673 15.5196 7.75484 15.7071C7.94237 15.8946 8.19673 16 8.46194 16C8.72716 16 8.98151 15.8946 9.16905 15.7071C9.35659 15.5196 9.46194 15.2652 9.46194 15V9H15.4619C15.7272 9 15.9815 8.89464 16.1691 8.70711C16.3566 8.51957 16.4619 8.26522 16.4619 8C16.4619 7.73478 16.3566 7.48043 16.1691 7.29289C15.9815 7.10536 15.7272 7 15.4619 7Z" fill="black"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+        <button class="flex mb-8 pb-8 group w-full items-start justify-between border-b border-gray-100 text-left">
+          <div class="max-w-xl pr-5">
+            <h3 class="text-xl font-semibold text-black">How was the license?</h3>
+            <p class="hidden group-hover:block mt-3 text-lg text-gray-500">Pretium ac auctor quis urna orci feugiat. Vulputate tellus velit tellus orci auctor vel nulla facilisi ut. Ante nunc risus viverra vivamus. Eros amet at lectus ac ac nibh dignissim.</p>
+          </div>
+          <div class="pt-1">
+            <span class="hidden group-hover:block">
+              <svg width="17" height="3" viewbox="0 0 17 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 0.045166H1.46194C1.19673 0.045166 0.942374 0.150523 0.754838 0.338059C0.567302 0.525596 0.461945 0.77995 0.461945 1.04517C0.461945 1.31038 0.567302 1.56474 0.754838 1.75227C0.942374 1.93981 1.19673 2.04517 1.46194 2.04517H15.4619C15.7272 2.04517 15.9815 1.93981 16.1691 1.75227C16.3566 1.56474 16.4619 1.31038 16.4619 1.04517C16.4619 0.77995 16.3566 0.525596 16.1691 0.338059C15.9815 0.150523 15.7272 0.045166 15.4619 0.045166Z" fill="#FF460C"></path>
+              </svg>
+            </span>
+            <span class="block group-hover:hidden">
+              <svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 7H9.46194V1C9.46194 0.734784 9.35659 0.48043 9.16905 0.292893C8.98151 0.105357 8.72716 0 8.46194 0C8.19673 0 7.94237 0.105357 7.75484 0.292893C7.5673 0.48043 7.46194 0.734784 7.46194 1V7H1.46194C1.19673 7 0.942374 7.10536 0.754838 7.29289C0.567302 7.48043 0.461945 7.73478 0.461945 8C0.461945 8.26522 0.567302 8.51957 0.754838 8.70711C0.942374 8.89464 1.19673 9 1.46194 9H7.46194V15C7.46194 15.2652 7.5673 15.5196 7.75484 15.7071C7.94237 15.8946 8.19673 16 8.46194 16C8.72716 16 8.98151 15.8946 9.16905 15.7071C9.35659 15.5196 9.46194 15.2652 9.46194 15V9H15.4619C15.7272 9 15.9815 8.89464 16.1691 8.70711C16.3566 8.51957 16.4619 8.26522 16.4619 8C16.4619 7.73478 16.3566 7.48043 16.1691 7.29289C15.9815 7.10536 15.7272 7 15.4619 7Z" fill="black"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+        <button class="flex mb-8 pb-8 group w-full items-start justify-between border-b border-gray-100 text-left">
+          <div class="max-w-xl pr-5">
+            <h3 class="text-xl font-semibold text-black">How was the license?</h3>
+            <p class="hidden group-hover:block mt-3 text-lg text-gray-500">Pretium ac auctor quis urna orci feugiat. Vulputate tellus velit tellus orci auctor vel nulla facilisi ut. Ante nunc risus viverra vivamus. Eros amet at lectus ac ac nibh dignissim.</p>
+          </div>
+          <div class="pt-1">
+            <span class="hidden group-hover:block">
+              <svg width="17" height="3" viewbox="0 0 17 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 0.045166H1.46194C1.19673 0.045166 0.942374 0.150523 0.754838 0.338059C0.567302 0.525596 0.461945 0.77995 0.461945 1.04517C0.461945 1.31038 0.567302 1.56474 0.754838 1.75227C0.942374 1.93981 1.19673 2.04517 1.46194 2.04517H15.4619C15.7272 2.04517 15.9815 1.93981 16.1691 1.75227C16.3566 1.56474 16.4619 1.31038 16.4619 1.04517C16.4619 0.77995 16.3566 0.525596 16.1691 0.338059C15.9815 0.150523 15.7272 0.045166 15.4619 0.045166Z" fill="#FF460C"></path>
+              </svg>
+            </span>
+            <span class="block group-hover:hidden">
+              <svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 7H9.46194V1C9.46194 0.734784 9.35659 0.48043 9.16905 0.292893C8.98151 0.105357 8.72716 0 8.46194 0C8.19673 0 7.94237 0.105357 7.75484 0.292893C7.5673 0.48043 7.46194 0.734784 7.46194 1V7H1.46194C1.19673 7 0.942374 7.10536 0.754838 7.29289C0.567302 7.48043 0.461945 7.73478 0.461945 8C0.461945 8.26522 0.567302 8.51957 0.754838 8.70711C0.942374 8.89464 1.19673 9 1.46194 9H7.46194V15C7.46194 15.2652 7.5673 15.5196 7.75484 15.7071C7.94237 15.8946 8.19673 16 8.46194 16C8.72716 16 8.98151 15.8946 9.16905 15.7071C9.35659 15.5196 9.46194 15.2652 9.46194 15V9H15.4619C15.7272 9 15.9815 8.89464 16.1691 8.70711C16.3566 8.51957 16.4619 8.26522 16.4619 8C16.4619 7.73478 16.3566 7.48043 16.1691 7.29289C15.9815 7.10536 15.7272 7 15.4619 7Z" fill="black"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+        <button class="flex mb-8 pb-8 group w-full items-start justify-between border-b border-gray-100 text-left">
+          <div class="max-w-xl pr-5">
+            <h3 class="text-xl font-semibold text-black">How much we can buy this marvelous product?</h3>
+            <p class="hidden group-hover:block mt-3 text-lg text-gray-500">Pretium ac auctor quis urna orci feugiat. Vulputate tellus velit tellus orci auctor vel nulla facilisi ut. Ante nunc risus viverra vivamus. Eros amet at lectus ac ac nibh dignissim.</p>
+          </div>
+          <div class="pt-1">
+            <span class="hidden group-hover:block">
+              <svg width="17" height="3" viewbox="0 0 17 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 0.045166H1.46194C1.19673 0.045166 0.942374 0.150523 0.754838 0.338059C0.567302 0.525596 0.461945 0.77995 0.461945 1.04517C0.461945 1.31038 0.567302 1.56474 0.754838 1.75227C0.942374 1.93981 1.19673 2.04517 1.46194 2.04517H15.4619C15.7272 2.04517 15.9815 1.93981 16.1691 1.75227C16.3566 1.56474 16.4619 1.31038 16.4619 1.04517C16.4619 0.77995 16.3566 0.525596 16.1691 0.338059C15.9815 0.150523 15.7272 0.045166 15.4619 0.045166Z" fill="#FF460C"></path>
+              </svg>
+            </span>
+            <span class="block group-hover:hidden">
+              <svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 7H9.46194V1C9.46194 0.734784 9.35659 0.48043 9.16905 0.292893C8.98151 0.105357 8.72716 0 8.46194 0C8.19673 0 7.94237 0.105357 7.75484 0.292893C7.5673 0.48043 7.46194 0.734784 7.46194 1V7H1.46194C1.19673 7 0.942374 7.10536 0.754838 7.29289C0.567302 7.48043 0.461945 7.73478 0.461945 8C0.461945 8.26522 0.567302 8.51957 0.754838 8.70711C0.942374 8.89464 1.19673 9 1.46194 9H7.46194V15C7.46194 15.2652 7.5673 15.5196 7.75484 15.7071C7.94237 15.8946 8.19673 16 8.46194 16C8.72716 16 8.98151 15.8946 9.16905 15.7071C9.35659 15.5196 9.46194 15.2652 9.46194 15V9H15.4619C15.7272 9 15.9815 8.89464 16.1691 8.70711C16.3566 8.51957 16.4619 8.26522 16.4619 8C16.4619 7.73478 16.3566 7.48043 16.1691 7.29289C15.9815 7.10536 15.7272 7 15.4619 7Z" fill="black"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+        <button class="flex group w-full items-start justify-between text-left">
+          <div class="max-w-xl pr-5">
+            <h3 class="text-xl font-semibold text-black">Do you have any terms &amp; conditions?</h3>
+            <p class="hidden group-hover:block mt-3 text-lg text-gray-500">Pretium ac auctor quis urna orci feugiat. Vulputate tellus velit tellus orci auctor vel nulla facilisi ut. Ante nunc risus viverra vivamus. Eros amet at lectus ac ac nibh dignissim.</p>
+          </div>
+          <div class="pt-1">
+            <span class="hidden group-hover:block">
+              <svg width="17" height="3" viewbox="0 0 17 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 0.045166H1.46194C1.19673 0.045166 0.942374 0.150523 0.754838 0.338059C0.567302 0.525596 0.461945 0.77995 0.461945 1.04517C0.461945 1.31038 0.567302 1.56474 0.754838 1.75227C0.942374 1.93981 1.19673 2.04517 1.46194 2.04517H15.4619C15.7272 2.04517 15.9815 1.93981 16.1691 1.75227C16.3566 1.56474 16.4619 1.31038 16.4619 1.04517C16.4619 0.77995 16.3566 0.525596 16.1691 0.338059C15.9815 0.150523 15.7272 0.045166 15.4619 0.045166Z" fill="#FF460C"></path>
+              </svg>
+            </span>
+            <span class="block group-hover:hidden">
+              <svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.4619 7H9.46194V1C9.46194 0.734784 9.35659 0.48043 9.16905 0.292893C8.98151 0.105357 8.72716 0 8.46194 0C8.19673 0 7.94237 0.105357 7.75484 0.292893C7.5673 0.48043 7.46194 0.734784 7.46194 1V7H1.46194C1.19673 7 0.942374 7.10536 0.754838 7.29289C0.567302 7.48043 0.461945 7.73478 0.461945 8C0.461945 8.26522 0.567302 8.51957 0.754838 8.70711C0.942374 8.89464 1.19673 9 1.46194 9H7.46194V15C7.46194 15.2652 7.5673 15.5196 7.75484 15.7071C7.94237 15.8946 8.19673 16 8.46194 16C8.72716 16 8.98151 15.8946 9.16905 15.7071C9.35659 15.5196 9.46194 15.2652 9.46194 15V9H15.4619C15.7272 9 15.9815 8.89464 16.1691 8.70711C16.3566 8.51957 16.4619 8.26522 16.4619 8C16.4619 7.73478 16.3566 7.48043 16.1691 7.29289C15.9815 7.10536 15.7272 7 15.4619 7Z" fill="black"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

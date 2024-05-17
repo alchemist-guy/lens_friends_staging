@@ -1,0 +1,232 @@
+<section>
+  <div class="w-full h-72">
+    <% if @seller.cover_pic.present? %>
+      <%= image_tag(@seller.cover_pic, class: 'h-full w-full object-cover object-center', loading: 'lazy') %>
+    <% else %>
+      <img class="h-full w-full object-cover object-center" src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg">
+    <% end %>
+  </div>
+  <div class="flex flex-col -mt-28 lg:-mt-48 p-6 md:p-8">
+    <% if @seller.cover_pic.present? %>
+    <%= image_tag(@seller.profile_pic, class: 'w-40 h-40 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover border-8 border-white rounded-full', loading: 'lazy') %>
+    <% else %>
+      <img src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg" class="w-40 h-40 md:w-60 md:h-60 lg:w-72 lg:h-72 object-cover border-8 border-white rounded-full">
+    <% end %>
+    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+      <div class="w-full lg:w-1/3 lg:px-8">
+        <div class="max-w-md">
+          <div class="flex items-center space-x-2 mb-4">
+            <p class="text-2xl md:text-3xl text-gray-700" style="font-family: 'Playfair Display', serif !important;"><%= @seller.first_name.capitalize %> <%= @seller.last_name.capitalize %> </p>
+            <span class="bg-[#9c9e83] rounded-full p-1" title="Verified">
+              <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-100 h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path> </svg>
+            </span>
+          </div>
+          <p class="text-gray-500"><%= @seller.bio %></p>
+          <div class="mt-6">
+            <div class="flex mb-4">
+              <span class="mr-2">
+                <svg width="18" height="14" viewbox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.8332 0.333496H3.16656C2.50352 0.333496 1.86764 0.596888 1.3988 1.06573C0.929957 1.53457 0.666565 2.17045 0.666565 2.8335V11.1668C0.666565 11.8299 0.929957 12.4658 1.3988 12.9346C1.86764 13.4034 2.50352 13.6668 3.16656 13.6668H14.8332C15.4963 13.6668 16.1322 13.4034 16.601 12.9346C17.0698 12.4658 17.3332 11.8299 17.3332 11.1668V2.8335C17.3332 2.17045 17.0698 1.53457 16.601 1.06573C16.1322 0.596888 15.4963 0.333496 14.8332 0.333496ZM3.16656 2.00016H14.8332C15.0542 2.00016 15.2662 2.08796 15.4225 2.24424C15.5788 2.40052 15.6666 2.61248 15.6666 2.8335L8.9999 6.90016L2.33323 2.8335C2.33323 2.61248 2.42103 2.40052 2.57731 2.24424C2.73359 2.08796 2.94555 2.00016 3.16656 2.00016ZM15.6666 11.1668C15.6666 11.3878 15.5788 11.5998 15.4225 11.7561C15.2662 11.9124 15.0542 12.0002 14.8332 12.0002H3.16656C2.94555 12.0002 2.73359 11.9124 2.57731 11.7561C2.42103 11.5998 2.33323 11.3878 2.33323 11.1668V4.7335L8.56657 8.54183C8.69325 8.61497 8.83695 8.65347 8.98323 8.65347C9.12951 8.65347 9.27322 8.61497 9.3999 8.54183L15.6666 4.7335V11.1668Z" fill="#382CDD"></path>
+                </svg>
+              </span>
+              <p class="text-sm text-gray-500"><%= @seller.email %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3">
+        <div>
+          <h5 class="uppercase pb-2 font-medium text-gray-600">Location</h5>
+          <p class="text-gray-500 pb-2"><%= @seller.state.capitalize %>, USA</p>
+        </div>
+        <div>
+          <h5 class="uppercase pb-2 font-medium text-gray-600">SESSION TYPES</h5>
+          <% if @seller.session_type.present? %>
+          <% session_types = @seller.session_type.attributes.select { |field, value| value == true }.keys %>
+            <p class="text-gray-500 pb-2"><%= session_types.map(&:capitalize).join(', ') %></p>
+          <% else %>
+            <p class="text-gray-500 pb-2">Not Selected</p>
+          <% end %>
+        </div>
+        <div>
+          <h5 class="uppercase pb-2 font-medium text-gray-600">Reviews</h5>
+          <div class="flex">
+            <svg class="text-gray-400" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="m9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569c-.002 0-.646 3.113-1.074 5.19a.496.496 0 0 0 .734.534c1.844-1.048 4.606-2.624 4.606-2.624l4.604 2.625c.168.092.378.09.541-.029a.5.5 0 0 0 .195-.505l-1.071-5.191l3.919-3.566a.499.499 0 0 0-.28-.865c-2.108-.236-5.269-.586-5.269-.586l-2.183-4.83a.499.499 0 0 0-.909 0z"/></svg>
+            <svg class="text-gray-400" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="m9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569c-.002 0-.646 3.113-1.074 5.19a.496.496 0 0 0 .734.534c1.844-1.048 4.606-2.624 4.606-2.624l4.604 2.625c.168.092.378.09.541-.029a.5.5 0 0 0 .195-.505l-1.071-5.191l3.919-3.566a.499.499 0 0 0-.28-.865c-2.108-.236-5.269-.586-5.269-.586l-2.183-4.83a.499.499 0 0 0-.909 0z"/></svg>
+            <svg class="text-gray-400" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="m9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569c-.002 0-.646 3.113-1.074 5.19a.496.496 0 0 0 .734.534c1.844-1.048 4.606-2.624 4.606-2.624l4.604 2.625c.168.092.378.09.541-.029a.5.5 0 0 0 .195-.505l-1.071-5.191l3.919-3.566a.499.499 0 0 0-.28-.865c-2.108-.236-5.269-.586-5.269-.586l-2.183-4.83a.499.499 0 0 0-.909 0z"/></svg>
+            <svg class="text-gray-400" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="m9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569c-.002 0-.646 3.113-1.074 5.19a.496.496 0 0 0 .734.534c1.844-1.048 4.606-2.624 4.606-2.624l4.604 2.625c.168.092.378.09.541-.029a.5.5 0 0 0 .195-.505l-1.071-5.191l3.919-3.566a.499.499 0 0 0-.28-.865c-2.108-.236-5.269-.586-5.269-.586l-2.183-4.83a.499.499 0 0 0-.909 0z"/></svg>
+            <svg class="text-gray-400" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="m9.362 9.158l-5.268.584c-.19.023-.358.15-.421.343s0 .394.14.521c1.566 1.429 3.919 3.569 3.919 3.569c-.002 0-.646 3.113-1.074 5.19a.496.496 0 0 0 .734.534c1.844-1.048 4.606-2.624 4.606-2.624l4.604 2.625c.168.092.378.09.541-.029a.5.5 0 0 0 .195-.505l-1.071-5.191l3.919-3.566a.499.499 0 0 0-.28-.865c-2.108-.236-5.269-.586-5.269-.586l-2.183-4.83a.499.499 0 0 0-.909 0z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="w-full lg:w-1/3">
+        <div class="">
+          <div class="container mx-auto text-center font-bold">
+            Photographer Availability
+          </div>
+          <%= month_calendar(events: @off_days ) do |date, off_days| %>
+            <%= date.day %>
+            <% off_days.each do |off_day| %>
+              <div class="text-xs flex items-center">
+                <svg class="h-4 w-4 mx-auto text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </div>
+            <% end %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-6 md:p-8">
+  <header class="mb-8">
+    <p class="text-2xl">Portfolio</p>
+  </header>
+  <% if @seller.session_type.present? %>
+    <% @seller.session_type.attributes.each do |field, value| %>
+      <% if value == true && [true, false].include?(value) %>
+        <div data-controller="lightbox">
+          <%= render "users/gallery/picture_modal" %>
+          <p class="text-lg text-gray-600 uppercase mt-4"><%= field.to_s.capitalize %></p>
+          <div class="grid grid-cols-4 gap-2 mt-8">
+            <% galleries = @seller.session_type.galleries.where(gallery_type: field) %>
+            <% galleries.each do |gallery| %>
+              <% gallery.images.each do |image| %>
+                <div class="relative group">
+                  <%= image_tag(image, class: 'h-20 md:h-48 lg:h-72 w-full object-cover group-hover:opacity-75', loading: 'lazy', data: { action: "click->lightbox#handleOpen", lightbox_url_param: users_gallery_attachments_path(gallery),  lightbox_key_param: image.key }) %>
+                </div>
+              <% end %>
+              <% if gallery.videos.attached? %>
+                <% gallery.videos.each do |video| %>
+                  <div class="relative group" >
+                    <%= video_tag(video, controls: true, class: "h-20 md:h-48 lg:h-72 w-full object-cover group-hover:opacity-75") %>
+                  </div>
+                <% end %>
+              <% end %>  
+            <% end %>
+
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+   <div class="container mx-auto">Not Selected</div>
+  <% end %>
+
+
+</section>
+<% if @seller.packages.present? %>
+  <section class="bg-gray-100 p-6 md:p-8">
+    <p class="text-2xl">Pricing Packages</p>
+    <div class="mt-8 flex">
+      <% @seller.packages.each do |package|%>
+      <div class="w-full md:w-1/2 lg:w-1/3 p-6 bg-white bg-opacity-90 rounded-4xl mx-2">
+          <div class="border-b border-gray-100">
+            <div class="py-6 px-8">
+              <h3 class="text-xl text-gray-900 font-bold leading-snug"><%= package.session_type.capitalize %></h3>
+            </div>
+          </div>
+          <div class="pt-8 pb-8 px-6">
+            <% price_range = @seller.packages.first.price_ranges.min_by(&:hour) %>
+            <p class="mb-6 text-xl text-gray-500 leading-normal">
+              <span>Starting from</span>
+              <span class="text-gray-900 text-xl md:text-3xl">$<%= price_range.price %></span>
+            </p>
+            <p class="mb-6 text-gray-600 font-medium leading-relaxed">Features included:</p>
+            <ul class="mb-11">
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                <p class="leading-normal">Starting at <%= price_range.hour %> hour</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">60+ Edited High Res Photos</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">2 Outfit changes</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">1 Location</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">Slideshow</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">Location Guide</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">Session Prep Guide</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">Prints!</p>
+              </li>
+              <li class="mb-2 flex items-center">
+                <svg class="text-[#9c9e83] mr-2" width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.5 10L9.16667 11.6667L12.5 8.33333M17.5 10C17.5 14.1421 14.1421 17.5 10 17.5C5.85786 17.5 2.5 14.1421 2.5 10C2.5 5.85786 5.85786 2.5 10 2.5C14.1421 2.5 17.5 5.85786 17.5 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <p class="leading-normal">Travel and taxes not included</p>
+              </li>
+            </ul>
+            <div>
+              <button class="py-4 px-10 font-semibold rounded-full focus:ring focus:ring-[#d6dacc] bg-[#9c9e83] hover:bg-[#d6dacc] text-white transition ease-in-out duration-200" type="button">Email Professional</button>
+            </div>
+          </div>
+      </div>
+      <% end %>
+      
+    </div>
+  </section>
+<% end %>
+<section class="p-6 md:p-8">
+  <p class="text-2xl">Reviews</p>
+  <div class="border border-gray-100 rounded-lg flex flex-col justify-center items-center gap-3 text-center p-8 mt-8">
+    <p class="text-sm text-gray-500 text-center">Photographer currently has no reviews.<br> Have you worked with this photographer</p>
+    <div class="mt-2">
+        <button class="focus:outline-none focus:shadow-outline border border-gray-300 px-4 py-2 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#9c9e83] hover:bg-[#d6dacc] text-white text-sm transition duration-100">Leave a review</button>
+    </div>
+  </div>
+</section>
+
+<div class="mb-8 px-4 md:px-8">
+  <header class="mb-8">
+    <p class="text-2xl md:text-3xl text-gray-700 mb-2" style="font-family: 'Playfair Display', serif !important;">Profile Manage by Admin</p>
+    <p class="text-sm text-gray-500">Send email and notification to Shopper or delete the profile and email</p>
+  </header>
+  <div class="mb-6">
+    <h3 class="mb-2 font-normal text-gray-700">Send Email</h3>
+    <textarea rows="6" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Your message..." required=""></textarea>
+    <button class="w-full md:w-1/6 font-medium px-4 py-2 text-base bg-[#B7BAA7] hover:bg-[#9c9e83] text-white border border-gray-200 rounded-full mt-3">Send Email</button>
+  </div>
+  <div class="mb-6">
+    <h3 class="mb-2 font-normal text-gray-700">Send Notification</h3>
+    <textarea rows="6" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Your message..." required=""></textarea>
+    <button class="w-full md:w-1/6 font-medium px-4 py-2 text-base bg-[#B7BAA7] hover:bg-[#9c9e83] text-white border border-gray-200 rounded-full mt-3">Send Notification</button>
+  </div>
+  <div>
+    <h3 class="mb-2 font-normal text-gray-700">Delete Profile</h3>
+    <textarea rows="6" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Your message..." required=""></textarea>
+    <button class="w-full md:w-1/6 font-medium px-4 py-2 text-base bg-red-400 hover:bg-red-900 text-white border border-gray-200 rounded-full mt-3">Delete & Send</button>
+  </div>
+</div>

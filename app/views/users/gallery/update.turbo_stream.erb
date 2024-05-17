@@ -1,0 +1,3 @@
+<%= turbo_stream.update "gallery-errors" do %>
+  <%= render partial: "shared/errors", locals: { error_messages: @gallery.errors } %>
+<% end %>

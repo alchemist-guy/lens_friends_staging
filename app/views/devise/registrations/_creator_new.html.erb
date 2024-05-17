@@ -1,0 +1,94 @@
+<div class="flex min-h-screen flex-col pt-8 md:flex-row md:pt-0">
+  <div class="flex w-full flex-col items-center justify-center md:w-7/12 md:p-8 md:pt-18">
+    <div class="form-wrapper flex w-full flex-col justify-center p-6 md:w-10/12 lg:w-8/12">
+
+      <%= image_tag('logo.png', class: 'h-24 w-24 md:h-24 mb-6 mx-auto') %>
+
+      <h2 class="text-xl md:text-2xl pb-10 text-center font-bold text-uppercase" style="font-family: 'Nanum Myeongjo', sans-serif; font-weight: 700;">
+        CREATE YOUR LENSFRIENDS<br class=""> ACCOUNT
+      </h2>
+
+      
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id:'contact_form', class:"form-border"}) do |f| %>
+      <%= render partial:"devise/shared/error_messages", locals: {resource: resource} %>
+      <%= f.select :is_creator, options_for_select([['Creator', true]], selected: true), {}, { class: 'form-control', style: 'display: none;' } %>
+      <div>
+        <div class="flex gap-x-2 mb-3">
+          <div class="relative float-label-input w-1/2">
+            <%= f.text_field :first_name, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", id: "fname", autofocus: true, required: true %>
+            <label for="fname" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> First Name </label>
+          </div>
+          <div class="relative float-label-input w-1/2">
+            <%= f.text_field :last_name, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", id: "lname", required: true %>
+            <label for="lname" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker"> Last Name </label>
+          </div>
+        </div>
+        <div class="relative mb-3 float-label-input">
+          <%= f.email_field :email, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", id: "email", placeholder: "", required: true %>
+          <label for="email" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Enter your Email</label>
+        </div>
+
+        <div class="relative mb-3 float-label-input">
+          <%= f.password_field :password, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", id: "pass", placeholder: "", required: true %>
+          <label for="pass" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Create your Password</label>
+        </div>
+
+        <div class="relative mb-3 float-label-input">
+          <%= f.password_field :password_confirmation, class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", id: "pass2", placeholder: "", required: true %>
+          <label for="pass2" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Re-type your Password</label>
+        </div>
+
+        <div class="flex gap-x-2 mb-3">
+
+          <div class="relative w-full float-label-input">
+            <%= f.collection_select(:state, USA_STATES, :second, :first, { include_blank: true }, { class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", required: true }) %>
+            <label for="state" class="transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">State</label>
+          </div>
+
+          <div class="relative w-full float-label-input">
+            <%= f.date_field :DOB, 
+                            class: "block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400", 
+                            required: true,
+                            max: Date.current.to_s %>
+            <label for="user_birthday" class="absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Birthday</label>
+          </div>
+
+
+          
+
+      </div>
+      <div class="flex items-center my-2 mb-3">
+        <%= f.check_box :discolure, class: "mr-2", id: "disclosure_checkbox" %>
+        <label for="checkboxExample" class="text-gray-700">I have read and agree to the <a href="#" class="easy-transition border-b border-current">Terms & Conditions</a> </label>
+      </div>
+      </div>
+
+      <div class="relative my-2 mb-3 float-label-input">
+         <%= f.submit "Continue", class: "block w-full focus:outline-none focus:shadow-outline border border-gray-300 py-3 px-3 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#d6dacc] hover:bg-[#9c9e83] hover:text-white" %>
+      </div>
+    <% end %>
+
+      <h6 class="relative z-10">
+        <span>Already have an account?</span>
+        <a class="easy-transition border-b border-current pb-1" href="<%= new_user_session_path( role: "creator" )%>">Tap here</a>
+      </h6>
+    </div>
+  </div>
+
+  <div class="relative h-[40vh] w-full shrink-0 md:mt-0 md:h-screen md:w-[44vw] flex items-center justify-center">
+    <%= image_tag('signup-screen.jpg', class: 'h-full w-full object-cover object-center') %>
+    <div class="absolute top-0 left-0 z-10 h-full w-full" style="background-color: rgba(0,0,0,0.2)"></div>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const disclosureCheckbox = document.getElementById('disclosure_checkbox');
+    const continueButton = document.querySelector('[type="submit"]');
+
+    disclosureCheckbox.addEventListener('change', function () {
+      continueButton.disabled = !disclosureCheckbox.checked;
+    });
+  });
+</script>

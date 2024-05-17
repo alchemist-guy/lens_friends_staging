@@ -1,0 +1,68 @@
+
+<%= form_with(model: model, url: url, method: method, data: { controller: "price-package", price_package_wrapper_selector_value: '.price-package-wrapper'}) do |form| %>
+  
+  <span id="package-errors">
+    <%= render partial: "shared/nested_errors", locals:{ error_messages: @error_messages, nested_errors:  @nested_errors }%>
+  </span>
+
+  <div class="flex gap-x-2 mb-8">
+    <div class="relative w-1/2">
+      <%= select_tag 'package[session_type]',
+               options_for_select(current_user.session_type.attributes.select { |_, value| value == true }.keys.map { |field| [field.humanize, field] }, selected: @package.session_type),
+               { include_blank: 'Select session', id: 'session', class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400' } %>
+
+      <label for="session" class="transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Session Type</label>
+    </div>
+    <div class="relative w-1/2">
+       <%= select_tag 'package[service_type]',
+               options_for_select([['Select service', nil, { class: 'text-gray-400' }]] + SERVICE_TYPE.map { |type| [type, type] }, selected: @package.service_type),
+               class: 'block w-full bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-md py-3 px-3 appearance-none leading-normal focus:border-gray-400',
+               required: true %>
+        <label for="service" class="transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Services Type</label>
+      </div>
+  </div>
+
+<%# custom logic for nested attributes%>
+  
+
+  <template data-price-package-target="template">
+    <%= form.fields_for :price_ranges, PriceRange.new, child_index: 'NEW_RECORD' do |price_range_fields| %>
+      <%= render "users/packages/price_range_form", f: price_range_fields %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :price_ranges do |price_range_fields| %>
+    <%= render "users/packages/price_range_form", f: price_range_fields %>
+  <% end %>
+
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-price-package-target="target"></div>
+
+  
+  <div class="flex justify-center items-center" data-price-package-target="addButton">
+    <button class="mb-3" type="button" data-action="price-package#add click->price-package#checkClass">
+      <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 50 50">
+        <path fill="currentColor" d="M25 42c-9.4 0-17-7.6-17-17S15.6 8 25 8s17 7.6 17 17s-7.6 17-17 17m0-32c-8.3 0-15 6.7-15 15s6.7 15 15 15s15-6.7 15-15s-6.7-15-15-15"/><path fill="currentColor" d="M16 24h18v2H16z"/><path fill="currentColor" d="M24 16h2v18h-2z"/>
+      </svg>
+    </button>
+  </div>
+
+
+<%# end logic here %>
+
+
+
+  <div class="relative mb-3 float-label-input">
+    <label for="package-description" class=" transform translate-y-[-1.5rem] scale-75 absolute top-3 left-1 text-gray-400 pointer-events-none transition duration-200 ease-in-out bg-white px-2 text-grey-darker">Package Description</label>
+    <%= form.text_area :description,
+                   id: 'package-description',
+                   class: 'shadow form-textarea mt-1 block border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',
+                   rows: 5,
+                   placeholder: 'Enter the detail of Package description!' %>
+  </div>
+
+  <div class="flex relative gap-2 mt-8 w-6/12">
+    <input type="submit" value="Save" class="block w-1/2 focus:outline-none focus:shadow-outline border border-gray-300 py-3 px-3 appearance-none leading-normal focus:border-gray-400 rounded-full bg-[#d6dacc] hover:bg-[#9c9e83] hover:text-white">
+  </div>
+
+<% end %>
