@@ -82,3 +82,10 @@ gem 'stripe'
 gem 'ransack'
 gem 'pagy'
 gem "noticed"
+gem "capistrano"
+gem "capistrano-rails"
+gem "capistrano-bundler"
+gem "capistrano-rbenv"
+gem "capistrano3-puma"
+
+
