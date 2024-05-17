@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock "~> 3.18.1"
 set :application, "lens_friends_staging"
 set :repo_url, 'https://github.com/alchemist-guy/lens_friends_staging.git'
 set :deploy_to, '/var/www/apps/lens_friends_staging'

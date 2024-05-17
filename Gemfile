@@ -86,6 +86,6 @@ gem "capistrano", require: false
 gem "capistrano-rails", require: false
 gem "capistrano-bundler"
 gem "capistrano-rbenv"
-gem "capistrano3-puma"
+gem "capistrano3-puma", "~> 5.2"
 
 
