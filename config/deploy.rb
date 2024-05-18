@@ -29,5 +29,5 @@ execute "mkdir #{shared_path}/tmp/sockets -p"
 execute "mkdir #{shared_path}/tmp/pids -p"
 end
 end
-before :start, :make_dirs
+before :start, :make_dirs   
 end
